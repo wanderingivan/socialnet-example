@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT dataset (
+	acl_sid*,
+	acl_class*,
+	acl_object_identity*,
+	acl_entry*
+)>
+
+<!ELEMENT acl_sid EMPTY>
+<!ATTLIST acl_sid
+	id CDATA #IMPLIED
+	principal CDATA #REQUIRED
+	sid CDATA #REQUIRED
+>
+
+<!ELEMENT acl_class EMPTY>
+<!ATTLIST acl_class
+	id CDATA #IMPLIED
+	class CDATA #REQUIRED
+>
+
+<!ELEMENT acl_object_identity EMPTY>
+<!ATTLIST acl_object_identity
+		id CDATA #IMPLIED
+		object_id_class CDATA #REQUIRED
+		object_id_identity CDATA #REQUIRED
+		parent_object CDATA #IMPLIED
+		owner_sid CDATA #IMPLIED
+		entries_inheriting CDATA #REQUIRED
+>
+
+
+<!ELEMENT acl_entry EMPTY>
+<!ATTLIST acl_entry
+		id CDATA #IMPLIED
+		acl_object_identity CDATA #REQUIRED
+		ace_order CDATA #REQUIRED
+		sid CDATA #REQUIRED
+		mask CDATA #REQUIRED
+		granting CDATA #REQUIRED
+		audit_success CDATA #REQUIRED
+		audit_failure CDATA #REQUIRED
+>

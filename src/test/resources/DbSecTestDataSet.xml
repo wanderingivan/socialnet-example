@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dataset PUBLIC "//UNKNOWN/" "acl.dtd">
+
+<dataset>
+	<acl_sid id="1" sid="username3" principal="1"/>
+	<acl_class id="1" class="com.socialnet.model.User"/>
+	<acl_object_identity id="1" object_id_class="1" entries_inheriting="0" object_id_identity="2" owner_sid="1"/>
+	<acl_entry audit_failure="0" ace_order="0" mask="2" sid="1" audit_success="0" acl_object_identity="1" granting="1"/>
+</dataset>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT dataset (
+	users*,
+	friendships*,
+	friend_requests*,
+	wall_posts*,
+	wall_messages*,
+	chats*,
+	chat_messages*,	
+	chats_join_table*,
+	images*,
+	likes*,
+    tasks*,
+    authorities*
+)>
+
+<!ELEMENT users EMPTY>
+<!ATTLIST users
+	user_id CDATA #IMPLIED
+	username CDATA #REQUIRED 
+	email CDATA #REQUIRED
+	password CDATA #REQUIRED
+	profilePic CDATA #IMPLIED
+	enabled CDATA #IMPLIED
+>
+
+<!ELEMENT friendships EMPTY>
+<!ATTLIST friendships
+	user1_id CDATA #REQUIRED
+	user2_id CDATA #REQUIRED
+	createdOn CDATA #IMPLIED
+>
+
+<!ELEMENT friend_requests EMPTY>
+<!ATTLIST friend_requests 
+	friend_request_id CDATA #IMPLIED
+	accepted CDATA #REQUIRED
+	denied CDATA #IMPLIED
+	sender_id CDATA #REQUIRED
+	receiver_id CDATA #REQUIRED
+>
+<!ELEMENT wall_posts EMPTY>
+<!ATTLIST wall_posts
+	wall_post_id CDATA #IMPLIED
+	owner_id CDATA #REQUIRED
+>
+<!ELEMENT wall_messages EMPTY>
+<!ATTLIST wall_messages
+	wall_message_id CDATA #IMPLIED
+	message CDATA #REQUIRED
+	sender_id CDATA #REQUIRED
+	wall_post_id CDATA #REQUIRED
+>
+
+<!ELEMENT chats_join_table EMPTY>
+<!ATTLIST chats_join_table
+	chat_id CDATA #REQUIRED
+	user_id CDATA #REQUIRED
+>
+
+<!ELEMENT chat_messages EMPTY>
+<!ATTLIST chat_messages
+	message_id CDATA #IMPLIED
+	message CDATA #REQUIRED
+	sent CDATA #IMPLIED
+	chat_id CDATA #REQUIRED
+	sender_id CDATA #REQUIRED
+>
+
+<!ELEMENT chats EMPTY>
+<!ATTLIST chats
+	chat_id CDATA #IMPLIED
+	lastUpdate CDATA #IMPLIED
+>
+<!ELEMENT images EMPTY>
+<!ATTLIST images
+    image_id CDATA #IMPLIED
+    imagePath CDATA #REQUIRED
+    user_id CDATA #IMPLIED
+>
+<!ELEMENT likes EMPTY>
+<!ATTLIST likes 
+	likes_id CDATA #IMPLIED
+	sender_id CDATA #REQUIRED
+	wall_post_id CDATA #REQUIRED
+>
+
+<!ELEMENT tasks EMPTY>
+<!ATTLIST tasks
+	task_id CDATA #IMPLIED
+	name CDATA #REQUIRED
+	description CDATA #REQUIRED
+	assigner CDATA #REQUIRED
+	assignee CDATA #REQUIRED
+>
+
+<!ELEMENT authorities EMPTY >
+<!ATTLIST authorities
+	username CDATA #REQUIRED
+	authority  CDATA #REQUIRED 
+>

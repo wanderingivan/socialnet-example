@@ -1,0 +1,55 @@
+<!DOCTYPE dataset PUBLIC "//UNKNOWN/" "test.dtd">
+<dataset>
+	<users user_id="1" username="username1" email="some@email" password="Bar" profilePic="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350News.png" enabled="1"/>
+	<users user_id="2" username="username2" email="some@email1" password="" profilePic="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350News.png"  enabled="1"/>
+	<users username="username3" email="some@email2" password="Bar" profilePic="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350News.png"  enabled="1"/>
+	<users user_id="4" username="username4" email="some@email3" password="" profilePic="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350News.png"  enabled="1"/>
+	<users user_id="5" username="username5" email="some@email4" profilePic="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350News.png"   password="" enabled="1"/>
+	<users user_id="6" username="username6" email="some@email5" profilePic="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350News.png"  password="" enabled="1"/>	
+	<users user_id="7" username="username7" email="some@email6" password="" profilePic="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350News.png"  enabled="0"/> 
+	<users user_id="8" username="username8" email="some@email7" profilePic="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350News.png"  password="" enabled="1"/>
+	<users user_id="9" username="username9" email="some@email8" password="" profilePic="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350News.png"  enabled="1"/>
+	<users user_id="10" username="username10" password="" email="some@email9" profilePic="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350News.png"  enabled="1"/>
+	<users user_id="11" username="username11" password="" email="some@email10" profilePic="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350News.png"  enabled="1"/>
+		
+	<friendships user1_id="5" user2_id="1"/>
+	<friendships user1_id="1" user2_id="5"/>
+	<friendships user1_id="5" user2_id="6"/>
+	<friendships user1_id="6" user2_id="5"/>
+	<friendships user1_id="5" user2_id="7"/>
+	<friendships user1_id="7" user2_id="5"/>
+	<friendships user1_id="5" user2_id="8"/>
+	<friendships user1_id="8" user2_id="5"/>
+	<friendships user1_id="5" user2_id="9"/>
+	<friendships user1_id="9" user2_id="5"/>
+	<friendships user1_id="6" user2_id="7"/>
+	<friendships user1_id="7" user2_id="6"/>
+	<friend_requests sender_id="7" receiver_id="6" accepted="0" denied="0"/> 
+	<friend_requests friend_request_id="1" sender_id="5" receiver_id="2" accepted="0" denied="0"/> 
+	<wall_posts wall_post_id="3" owner_id="8"/>
+	<wall_posts wall_post_id="4" owner_id="7"/>
+	<wall_messages sender_id="9" wall_post_id="3" message="somemesage"/>
+	<wall_messages sender_id="9" wall_post_id="4" message="somemesage"/>
+	<wall_messages sender_id="9" wall_post_id="4" message="somemesage"/>
+	<wall_messages sender_id="9" wall_post_id="4" message="somemesage"/>
+	<wall_messages sender_id="9" wall_post_id="4" message="somemesage"/>
+	<wall_messages sender_id="9" wall_post_id="4" message="somemesage"/>
+	<wall_messages sender_id="9" wall_post_id="4" message="somemesage"/>
+	<wall_messages sender_id="9" wall_post_id="4" message="somemesage"/>
+	
+	<chats chat_id="5"/>
+	<chat_messages sender_id="10" chat_id="5" message="msg3"/>
+	<chat_messages sender_id="11" chat_id="5" message="msg4"/>
+	<chats_join_table user_id="10" chat_id="5"/>
+	<chats_join_table user_id="11" chat_id="5"/>	
+	<images image_id="1" imagePath="/testPath"/>
+	<images image_id="2" imagePath="/testPath2"/>
+	<images image_id="3" imagePath="/testPath3" user_id="5"/>
+	<images imagePath="/testPath4" user_id="5"/>
+	<likes sender_id="1" wall_post_id="3"/>
+	
+	
+    <tasks task_id="1" assigner="username2" name="testTask1" description="test description" assignee="username1"/>
+    <tasks assigner="username2" name="testTask2" description="test description" assignee="username3"/>
+	<authorities username="username2" authority="ROLE_USER"/>
+</dataset>
