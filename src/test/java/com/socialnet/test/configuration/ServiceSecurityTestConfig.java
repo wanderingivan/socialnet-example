@@ -2,7 +2,6 @@ package com.socialnet.test.configuration;
 
 import javax.sql.DataSource;
 
-
 import org.hibernate.SessionFactory;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +14,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.security.acls.model.MutableAclService;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.support.ResourceTransactionManager;
 
@@ -67,8 +68,17 @@ public class ServiceSecurityTestConfig {
 		return fb;
 	}
 	
+	
 	@Bean
 	@Autowired
+	public DaoAuthenticationProvider authProvider(DataSource dataSource){
+		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+		provider.setUserDetailsService(userDetailsService(dataSource));
+		provider.setPasswordEncoder(passwordEncoder());
+		return provider;
+	}
+	
+	@Bean
 	public UserDetailsService userDetailsService (DataSource dataSource){
 		JdbcDaoImpl dao =  new JdbcDaoImpl();
 		dao.setDataSource(dataSource);
@@ -82,6 +92,11 @@ public class ServiceSecurityTestConfig {
 	@Autowired
 	public ResourceTransactionManager transactionManager (DataSource dataSource){
 		return new DataSourceTransactionManager(dataSource);
+	}
+	
+	@Bean 
+	public PasswordEncoder passwordEncoder(){
+		return new BCryptPasswordEncoder(12);
 	}
 	
 }
