@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.dynamicMethodInvocation" value="false"/>
+	<constant name="struts.ognl.enableExpressionCache" value="false"/>
+    <constant name="struts.multipart.parser" value="springMultipartParser"/>
+    <constant name="struts.custom.i18n.resources" value="global"/>    
+	<package name="default" namespace="/" extends="tiles-default">
+		<interceptors>
+			<interceptor name="authAwareInterceptor" class="com.socialnet.interceptor.AuthInterceptor"/>
+			<interceptor-stack name="authAwareStack">
+			  <interceptor-ref name="authAwareInterceptor"/>
+			  <interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="error" type="tiles">errorLayout</result>
+		</global-results>
+		<action name="testError">
+			<result name="success" type="tiles">errorLayout</result>
+		</action>
+	</package>
+	<package name="user" namespace="/user" extends="tiles-default,json-default">
+		<interceptors>
+			<interceptor name="authAwareInterceptor" class="com.socialnet.interceptor.AuthInterceptor"/>
+			<interceptor-stack name="authAwareStack">
+			  <interceptor-ref name="authAwareInterceptor"/>
+			  <interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="error" type="tiles">errorLayout</result>
+		</global-results>
+
+		<action name="createPage">
+		  <result name="success">/WEB-INF/content/jsp/user/create.jsp</result>
+		</action>
+		<action name="editPage">
+			<result name="success" type="tiles">/WEB-INF/content/jsp/user/edit.jsp</result>
+		</action>
+	</package>
+	<package name="message" namespace="/message" extends="tiles-default,json-default">
+		<interceptors>
+			<interceptor name="authAwareInterceptor" class="com.socialnet.interceptor.AuthInterceptor"/>
+			<interceptor-stack name="authAwareStack">
+			  <interceptor-ref name="authAwareInterceptor"/>
+			  <interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="error" type="tiles">errorLayout</result>
+		</global-results>
+
+	</package>
+
+	<package name="util" extends="struts-default" namespace="/util">
+	
+		<result-types>
+        	<result-type name="imageBytesResult" class="com.socialnet.action.result.ImageBytesResult"/>
+    	</result-types>
+    	
+    </package>	
+    
+    <package name="admin" extends="json-default,struts-default" namespace="/admin">
+        <interceptors>
+			<interceptor name="authAwareInterceptor" class="com.socialnet.interceptor.AuthInterceptor"/>
+			<interceptor-stack name="authAwareStack">
+			  <interceptor-ref name="authAwareInterceptor"/>
+			  <interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+
+    </package>
+
+</struts>
