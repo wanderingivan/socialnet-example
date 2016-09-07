@@ -1,0 +1,78 @@
+@CHARSET "UTF-8";
+
+.sent {
+  color:#fff;
+  font-weight : 700;
+  text-transform:full-width;
+  padding:3px;
+  border-radius :4px
+}
+.pending {
+  background-color:#ff0000;
+}
+
+.shipped {
+  background-color:#22d17d;	
+}
+i {
+  color:#fff;
+}
+i:hover{
+ cursor:pointer;
+ color:#dadada;	
+}
+.panel-heading {
+	color:#fff !important;
+	font-weight : 700;
+}
+.products .panel-heading{
+  background-color:#f58200;
+}
+
+.orders .panel-heading {
+  background-color:#22a17a;
+}
+
+.users .panel-heading {
+  background-color:#b72513;
+}
+
+.main {
+	margin-left : 220px;
+}
+.sidebar {
+	width:220px;
+	background-color:#000;
+	color:#fff;
+	position:absolute;
+	top:0px;
+	bottom:0px;
+	left:0px;
+}
+.sidebar .nav-pills > li {
+	float:none;
+}
+.wrapper {
+	position:relative;
+	padding-right:250px;
+	overflow:hidden;
+}
+.header {
+	margin-left:220px;
+	background-color:#000;
+	width:100%;
+	height:50px;
+}
+.navbar-default{
+	margin-bottom:0px;
+}
+.tab-content {
+	margin-top:20px;
+}
+#dropdownMessages {
+
+}
+#dropdownTasks {
+	right:0px;
+	left:-91px;
+}
