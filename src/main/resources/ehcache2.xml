@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<ehcache xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' 
+         xsi='http://ehcache.org/ehcache.xsd'>
+    <defaultCache eternal='true' maxElementsInMemory='100' overflowToDisk='false' />
+    <cache name="aclCache" 
+    		maxElementsInMemory='100' 
+    		eternal='false' 
+    		memoryStoreEvictionPolicy="LFU" 
+    		diskSpoolBufferSizeMB="10"
+    		timeToLiveSeconds="600"
+    		transactionalMode="off"
+    		/>"
+    <cache  name='image' 
+    		maxElementsInMemory='10000' 
+    		eternal='false' 
+    	    maxEntriesLocalDisk="1000"
+    		memoryStoreEvictionPolicy="LFU" 
+    		diskSpoolBufferSizeMB="100"
+    		timeToLiveSeconds="600"
+    		transactionalMode="off"
+    		/>
+    <cache  name='b64' 
+    		maxElementsInMemory='10000' 
+    		eternal='false' 
+    	    maxEntriesLocalDisk="1000"
+    		memoryStoreEvictionPolicy="LFU" 
+    		diskSpoolBufferSizeMB="100"
+    		timeToLiveSeconds="600"
+    		transactionalMode="off"
+    		/>
+</ehcache>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<ehcache xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' 
+         xsi='http://ehcache.org/ehcache.xsd'>
+    <defaultCache eternal='true' maxElementsInMemory='1000' overflowToDisk='false' />
+
+</ehcache>
