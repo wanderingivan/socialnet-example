@@ -33,6 +33,8 @@ public class SocialNetInitializer implements WebApplicationInitializer {
         AnnotationConfigWebApplicationContext appContext = setUpAppContext();
         servletContext.addListener(new ContextLoaderListener(appContext));
         
+          //TilesAccess a class used in TilesListener doesn't have permission to append the tiles container
+          //to the servlet context if initialized this way so we have to do it manually- this is fixed in 2.3.28 onward
         try{
         	servletContext.setAttribute("org.apache.tiles.CONTAINER",new TilesResolver().createContainer(servletContext));
         }catch(TilesException te){
