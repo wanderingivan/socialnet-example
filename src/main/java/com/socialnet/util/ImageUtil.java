@@ -87,7 +87,8 @@ public class ImageUtil {
 			//Do we need conversion
 			if(convertToJpg && contentType != "image/jpg"){
 				image = convertToJpg(ImageIO.read(input));
-				fileName = fileName.substring(0, fileName.length() -4).concat(".jpg");//FIXME Easily breakable  handle with regex instead !!!
+				fileName = fileName.substring(0, fileName.lastIndexOf('.'))
+						           .concat(".jpg");
 			}else{
 				image = ImageIO.read(input);
 			}
