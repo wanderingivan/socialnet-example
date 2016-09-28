@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 		user.setEnabled(true);
 		user.setPassword(encoder.encode(user.getPassword()));
 		long id = dao.createUser(user);
-		createAcl(new PrincipalSid(user.getUsername()),id);//FIXME Throws Weird Errors
+		createAcl(new PrincipalSid(user.getUsername()),id);
 	}
 	
 	@Override

@@ -52,7 +52,7 @@ public abstract class AbstractActionValidationTestCase extends StrutsTestCase {
     protected abstract void setUpRequestTestParams(String [] param);
 
     /**
-     * Convinience method to switch test configs
+     * Convenience method to switch test configs
      * @param configClass different class to initialize appContext with
      */
 	public void setConfigClass(Class configClass) {
