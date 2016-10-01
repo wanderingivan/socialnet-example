@@ -41,6 +41,9 @@
 		<action name="editPage">
 			<result name="success" type="tiles">/WEB-INF/content/jsp/user/edit.jsp</result>
 		</action>
+		<action name="changePasswordPage">
+			<result name="success" type="tiles">changePasswordLayout</result>
+		</action>
 	</package>
 	<package name="message" namespace="/message" extends="tiles-default,json-default">
 		<interceptors>

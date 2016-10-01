@@ -4,6 +4,7 @@
 "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
+
 	<definition name="baseLayout" template="/WEB-INF/content/jsp/base/basePageLayout.jsp">
 		<put-attribute name="title" value="Home Page Prototype" type="string"/>
 		<put-attribute name="nav" value="/WEB-INF/content/jsp/user/nav.jsp"/>
@@ -11,60 +12,78 @@
 		<put-attribute name="sidebar" value=""/>
 		<put-attribute name="wall" value=""/>
 	</definition>
+	
 	<definition name="flatLayout" template="/WEB-INF/content/jsp/base/flatLayout.jsp">
 		<put-attribute name="title" value="Home Page Prototype" type="string"/>
 		<put-attribute name="nav" value="/WEB-INF/content/jsp/user/nav.jsp"/>
 		<put-attribute name="user-info" value="/WEB-INF/content/jsp/user/user-info.jsp"/>
 		<put-attribute name="wall" value=""/>
 	</definition>
+	
 	<definition name="listLayout" template="/WEB-INF/content/jsp/base/listLayout.jsp">
 	    <put-attribute name="title" value="List Layout Prototype"/>
 		<put-attribute name="nav" value="/WEB-INF/content/jsp/user/nav.jsp"/>
 	    <put-attribute name="list" value=""/>
 	</definition>
+	
 	<definition name="userHomeLayout" extends="baseLayout">
 		<put-attribute name="title" value="User Home Page Prototype" type="string"/>
 		<put-attribute name="nav" value="/WEB-INF/content/jsp/user/nav.jsp"/>
 		<put-attribute name="sidebar" value="/WEB-INF/content/jsp/user/sidebar.jsp"/>
 		<put-attribute name="wall" value="/WEB-INF/content/jsp/user/wall.jsp"/>
 	</definition>
+	
 	<definition name="userMessagesLayout" extends="userHomeLayout">
 	  <put-attribute name="sidebar" value="/WEB-INF/content/jsp/user/sidebar.jsp"/>
 	  <put-attribute name="wall" value="/WEB-INF/content/jsp/user/messages.jsp"/>
 	</definition>
+	
 	<definition name="userAboutLayout" extends="userHomeLayout">
 	  <put-attribute name="wall" value="/WEB-INF/content/jsp/user/details.jsp"/>
 	</definition>
+	
     <definition name="userEditLayout" extends="flatLayout">
 	  <put-attribute name="wall" value="/WEB-INF/content/jsp/user/edit.jsp"/>
 	</definition>	
+	
+	<definition name="changePasswordLayout" extends="flatLayout">
+		<put-attribute name="wall" value="/WEB-INF/content/jsp/user/changePassword.jsp"/>
+	</definition>
+	
     <definition name="userGalleryLayout" extends="userHomeLayout">
 	  <put-attribute name="sidebar" value="/WEB-INF/content/jsp/user/sidebar.jsp"/>
 	  <put-attribute name="wall" value="/WEB-INF/content/jsp/user/gallery.jsp"/>
 	</definition>	
+	
     <definition name="userFriendsLayout" extends="userHomeLayout">
 	  <put-attribute name="sidebar" value="/WEB-INF/content/jsp/user/sidebar.jsp"/>
 	  <put-attribute name="wall" value="/WEB-INF/content/jsp/user/friends.jsp"/>
 	</definition>	
+	
     <definition name="userDetailsLayout" extends="flatLayout">
 	  <put-attribute name="wall" value="/WEB-INF/content/jsp/user/details.jsp"/>
 	</definition>	
+	
 	<definition name="userCreateLayout" extends="baseLayout">
 	  <put-attribute name="wall" value="/WEB-INF/content/jsp/user/create.jsp"/>
 	</definition>
+	
 	<definition name="userListLayout" extends="listLayout">
 		<put-attribute name="list" value="/WEB-INF/content/jsp/user/list.jsp"/>
 	</definition>
+	
 	<definition name="loginLayout" extends="flatLayout">
 		<put-attribute name="title" value="Login Page Prototype" type="string"/>
 		<put-attribute name="nav" value="/WEB-INF/content/jsp/base/nav.jsp"/>
 		<put-attribute name="user-info" value=""/>
 		<put-attribute name="wall" value="/WEB-INF/content/jsp/base/login.jsp"/>
 	</definition>
+	
 	<definition name="errorLayout" extends="flatLayout">
 		<put-attribute name="title" value="Error Page Prototype" type="string"/>
 		<put-attribute name="nav" value="/WEB-INF/content/jsp/user/nav.jsp"/>
 		<put-attribute name="user-info" value=""/>
 		<put-attribute name="wall" value="/WEB-INF/content/jsp/base/error404.jsp"/>
 	</definition>
+	
 </tiles-definitions>
