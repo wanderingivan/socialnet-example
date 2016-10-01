@@ -33,15 +33,12 @@
                    <s:label for="user.email" key="global.email"/>
  	               <s:textfield name="user.email" value="%{user.email}" key="global.email" type="email" required="true"/>
  	           </div>
- 	           <div class="form-group">
-                   <s:fielderror fieldName="user.password" cssClass="alert alert-danger"/>
-                   <s:label for="user.password" key="global.password"/>
-	               <s:password name="user.password" key="global.password" placeholder="*****" minLength="5" maxLength="25" required="true"/>
-	           </div>
+
 	           <div class="form-group">
 	              <button class="btn btn-primary" type="submit"><s:property value="getText('global.edit')"/></button>
 	           </div>
              </s:form>
+             <s:a class="btn btn-primary" action="changePassword" namespace="/user"><s:text name="global.change_password"/></s:a>
             </div>
            </div>
          </div>
