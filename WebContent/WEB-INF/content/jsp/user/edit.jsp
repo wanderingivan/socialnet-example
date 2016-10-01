@@ -26,12 +26,12 @@
                   
                    <s:fielderror fieldName="user.username" cssClass="alert alert-danger"/>
                    <s:label for="user.username" key="global.username"/>
-	               <s:textfield name="user.username" value="user.username" minLength="5" maxLength="25" required="true"/>
+	               <s:textfield name="user.username" value="%{user.username}" minLength="5" maxLength="25" required="true"/>
 	           </div>
 	           <div class="form-group">
                   <s:fielderror fieldName="user.email" cssClass="alert alert-danger"/>
                    <s:label for="user.email" key="global.email"/>
- 	               <s:textfield name="user.email" value="user.email" key="global.email" type="email" required="true"/>
+ 	               <s:textfield name="user.email" value="%{user.email}" key="global.email" type="email" required="true"/>
  	           </div>
  	           <div class="form-group">
                    <s:fielderror fieldName="user.password" cssClass="alert alert-danger"/>
