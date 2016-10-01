@@ -38,6 +38,7 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 
 	@Override
 	public long createUser(User user) {
+
 		logger.debug(String.format("Saving user %s",user.getUsername()));
 		Session session = getSession();
 		long savedID = 0;
@@ -57,7 +58,6 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 	public User retrieveUserByUsername(String username) {
 		logger.debug(String.format("retrieving user with username %s",username));
 
-		//return super.retrieveUserByUsername(username);
 		return getWithCriteria(new String[]{"username",username});
 	}
 
@@ -65,9 +65,8 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 	public void update(User user) {
 		try{
 			logger.debug(String.format("Updating user %s",user.getUsername()));
-		    Query q = createQuery("Update users SET username=:username,password=:password,email=:email WHERE id=:id")
+		    Query q = createQuery("Update users SET username=:username,email=:email WHERE id=:id")
 		                          .setString("username",user.getUsername())
-		                          .setString("password",user.getPassword())
 		                          .setString("email",user.getEmail())
 		                          .setLong("id", user.getId());
 		    q.executeUpdate();
@@ -264,6 +263,25 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 					       .list();
 	}
 	
+	@Override
+	public String getPassword(String principal) {
+		
+		return (String) createCriteria()
+				                 .add(Restrictions.eq("username",principal))
+				                 .setProjection(Projections.projectionList().add(Projections.property("password")))
+				                 .setMaxResults(1)
+				                 .uniqueResult();
+	}
+
+	@Override
+	public void changePassword(String principal, String password) {
+		logger.info("Changing password for user " + principal);
+		createQuery("UPDATE users SET password=:password WHERE username=:username")
+		           .setString("password", password)
+		           .setString("username", principal)
+		           .executeUpdate();
+	}
+	
 	/**
 	 * Locks or unlocks a user
 	 * @param username the user to lock or unlock 
@@ -299,5 +317,7 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 		}
 		return role;
 	}
+
+
 
 }

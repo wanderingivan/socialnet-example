@@ -157,6 +157,10 @@ public interface UserDao {
 	 */
 	List<Image> getUserImages(String username);
 
+	String getPassword(String principal);
+
+	void changePassword(String principal, String password);
+
 
 
 

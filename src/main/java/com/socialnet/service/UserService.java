@@ -181,6 +181,15 @@ public interface UserService {
 	 */
 	List<Image> getUserImages(String username);
 
+	/**
+	 * Changes a user's password
+	 * @param user
+	 * @param oldPassword
+	 * @param newPassword
+	 * @throws IncorrectPasswordException if the old password doesn't match
+	 */
+	void changePassword(String user, String oldPassword, String newPassword);
+
 
 
 }

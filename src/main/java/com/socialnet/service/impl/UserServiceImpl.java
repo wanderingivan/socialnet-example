@@ -13,6 +13,7 @@ import org.springframework.security.acls.model.Sid;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.socialnet.dao.UserDao;
+import com.socialnet.exception.IncorrectPasswordException;
 import com.socialnet.model.Details;
 import com.socialnet.model.FriendRequest;
 import com.socialnet.model.Image;
@@ -184,6 +185,19 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public List<Image> getUserImages(String username){
 		return dao.getUserImages(username);
+	}
+	
+	@Override
+	@Transactional
+	public void changePassword(String user,String oldPassword,String newPassword){
+		if(!checkPassword(user,oldPassword)){
+			throw new IncorrectPasswordException();
+		}
+		dao.changePassword(user,encoder.encode(newPassword));
+	}
+	
+	private boolean checkPassword(String principal, String password){
+		return encoder.matches(password, dao.getPassword(principal));
 	}
 	
 	/* Create acl that allows the user to edit his profile and check their cart 
