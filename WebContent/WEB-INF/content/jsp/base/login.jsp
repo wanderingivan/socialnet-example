@@ -24,6 +24,12 @@
              <div class="row">
               <div class="col-md-offset-1 col-md-10 col-md-offset-1 col-sm-offset-1 col-sm-10 col-sm-offset-1 col-xs-offset-1 col-xs-10 col-xs-offset-1">
     	          <form class="form-horizontal" action="/SocialNet/login" method="post" name="login">
+
+			        <div class="errorMessage">
+        			  <s:if test="%{#session.SPRING_SECURITY_LAST_EXCEPTION}">
+          			    <div class="alert alert-warning"><s:text name="global.login_error"/></div>
+        			  </s:if>
+      				</div>
     	            <div class="form-group">
     			  	  <div class="icon"><i class="fa fa-user"></i></div><s:textfield name="username" class="form-control" value="" placeholder="%{getText('global.username')}" minLength="5" maxLength="25" required="true"/>
    			        </div>
