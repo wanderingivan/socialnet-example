@@ -82,7 +82,6 @@ public class UserDaoTests extends AbstractDaoTest {
 		User test = getUser(toEdit.getUsername());
 		assertEquals(toEdit.getUsername(),test.getUsername());
 		assertEquals(toEdit.getEmail(),test.getEmail());
-		assertEquals(toEdit.getPassword(),test.getPassword());
 	}
 	
 	@Test
@@ -258,6 +257,20 @@ public class UserDaoTests extends AbstractDaoTest {
 	public void tesGetUserImages(){
 		List<Image> images = userDao.getUserImages("username5");
 		assertEquals(2,images.size());
+	}
+	
+
+	@Test
+	@Transactional
+	public void testChangePassword(){
+		userDao.changePassword( "username1", "new password");
+		assertEquals("new password", userDao.getPassword("username1"));
+	}
+	
+	@Test
+	@Transactional
+	public void testGetPassword(){
+		 assertEquals("Bar",userDao.getPassword( "username1"));
 	}
 	
 	private User getUser(String username) {
