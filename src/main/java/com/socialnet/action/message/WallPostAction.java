@@ -33,12 +33,10 @@ public class WallPostAction extends AbstractMessageAction {
 	public String execute(){
 			String path = null;
 		try{
-			logger.trace("Creating WallPost");
-			logger.debug(String.format("WallPost options sender: %s owner: %s message %s",username,owner,message));
+			if(logger.isDebugEnabled()){
+				logger.debug(String.format("WallPost options sender: %s owner: %s message %s",username,owner,message));
+			}
 			if(postImage != null){
-				logger.debug("Preparing to save " +postImage);
-				logger.debug("Name " + postImageFileName);
-				logger.debug("Content Type " +postImageContentType);
 				path = imageService.saveImage(postImage, postImageContentType, postImageFileName);
 				
 			}

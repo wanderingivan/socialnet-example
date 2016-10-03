@@ -20,8 +20,7 @@ public class DeleteWallPostAction extends AbstractMessageAction {
 			service.deleteWallPost(postId);
 			return SUCCESS;
 		}catch(Exception e){
-			logger.error("Error deleting wall post " + postId);
-			logger.error(e);
+			logger.error("Error deleting wall post " + postId + " \n" +e);
 		}
 		return ERROR;
 	}

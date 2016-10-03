@@ -42,7 +42,6 @@ public class RetrieveUnreadMessagesAction extends ActionSupport implements
 	@Action(value="unread-messages",results={@Result(name="success",location="/WEB-INF/content/jsp/user/unreadMessages.jsp")})
 	public String execute(){
 		try{
-			logger.debug("Getting unread messages for " + username);
 			messages = service.getUnread(username);
 			return SUCCESS;
 		}catch(Exception e){

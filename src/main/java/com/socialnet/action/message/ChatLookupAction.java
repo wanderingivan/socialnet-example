@@ -22,9 +22,10 @@ public class ChatLookupAction extends AbstractMessageAction {
 	@Action(value="chat", results={@Result(name="success",location="/WEB-INF/content/jsp/user/chat.jsp")})
 	public String execute(){
 		try{			
-			logger.trace("Loading chat " + chatId);
 			chat = service.getChat(chatId);
-			logger.debug("Result " +chat);
+			if(logger.isDebugEnabled()){
+				logger.debug("Result " +chat);
+			}
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Exception caught " +e);

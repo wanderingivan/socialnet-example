@@ -43,7 +43,6 @@ public class UnreadCountAction extends ActionSupport implements
 	@Action(value="unread-count",results={@Result(name="success",type="json")})
 	public String execute(){
 		try{
-			logger.debug("Counting unread  for " + username);
 			count = service.countUnread(username);
 			if(count == 0){
 				message =getText("global.no_unread");

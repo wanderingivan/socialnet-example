@@ -22,7 +22,6 @@ public class WallPostAjaxAction extends AbstractMessageAction {
 	
 	@Action(value="loadComments",results={@Result(name="success", type="json")})
 	public String execute(){
-		logger.debug(String.format("Loading comments for post %d index %d",postId,index));
 		try{
 			result = service.loadComments(postId,index);
 

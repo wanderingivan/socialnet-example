@@ -25,9 +25,10 @@ public class WallPostLookupAction extends AbstractMessageAction {
 	@Action(value="wall", results={@Result(name="success",type="json")})
 	public String execute(){
 		try{
-			logger.trace("Loading wall for user "+username );
 			posts = service.getWallPostsForUser(username);
-			logger.debug("Result " + posts);
+			if(logger.isDebugEnabled()){
+				logger.debug(String.format("WallPosts For user %s: %s",username,posts));
+			}
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Exception caught " + e);
@@ -38,9 +39,10 @@ public class WallPostLookupAction extends AbstractMessageAction {
 	@Action(value="post", results={@Result(name="success",type="json")})
 	public String loadPost(){
 		try{
-			logger.trace("Loading post with id " + postId );
 			post = service.getWallPost(postId);
-			logger.debug("Result " + post);
+			if(logger.isDebugEnabled()){
+				logger.debug(String.format("WallPosts %d: %s",postId,posts));
+			}
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Exception caught " + e);

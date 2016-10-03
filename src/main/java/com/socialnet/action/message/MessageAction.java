@@ -19,7 +19,9 @@ public class MessageAction extends AbstractMessageAction {
 	@Action(value="send-message",results={@Result(name="success",type="redirectAction",params={"namespace","/user","actionName","user-messages"})})
 	public String execute(){
 		try{
-			logger.debug( String.format("Sending Message to %s from %s",receiver,username));
+			if(logger.isDebugEnabled()){
+				logger.debug( String.format("Sending Message to %s from %s",receiver,username));
+			}
 			service.sendMessage(message,username,receiver);
 			return SUCCESS;
 		}catch(Exception e){
@@ -32,7 +34,9 @@ public class MessageAction extends AbstractMessageAction {
 	@Action(value="reply-message",results={@Result(name="success",type="redirectAction",params={"namespace","/user","actionName","user-messages"})})
 	public String addMessage(){
 		try{
-			logger.debug( String.format("Sending Message chat %d from %s",chatId,username));
+			if(logger.isDebugEnabled()){
+				logger.debug( String.format("Sending Message chat %d from %s",chatId,username));
+			}
 			service.addMessage(username,message,chatId);
 			return SUCCESS;
 		}catch(Exception e){

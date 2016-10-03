@@ -22,10 +22,14 @@ public class LoadWallPostAction extends AbstractMessageAction implements ModelDr
 	
 	@Action(value="loadPost", results={@Result(name="success", location="/WEB-INF/content/jsp/user/wallPost.jsp")})
 	public String execute(){
-		logger.debug(String.format("Loading wallPost for user %d index %d",userId,index));
+		if(logger.isTraceEnabled()){
+			logger.debug(String.format("Loading wallPost for user %d index %d",userId,index));
+		}
 		try{
 			wallPost = service.loadWallPost(userId,index);
-			logger.info("Result " + wallPost);
+			if(logger.isDebugEnabled()){
+				logger.info("Result " + wallPost);
+			}
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Error retrieving messages for user " + userId);

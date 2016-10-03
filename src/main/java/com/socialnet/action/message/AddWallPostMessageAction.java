@@ -20,8 +20,9 @@ public class AddWallPostMessageAction extends AbstractMessageAction {
 	@Action(value="post-reply",results={@Result(name="success", type="json")})
 	public String execute(){
 		try{
-			logger.trace("Adding WallPost Message");
-			logger.debug(String.format("PostOptions sender:%s postId:%d message:%s",username,postId,message));
+			if(logger.isDebugEnabled()){
+				logger.debug(String.format("PostOptions sender:%s postId:%d message:%s",username,postId,message));
+			}
 			result = service.postWallMessage(username,postId,message);
 			return SUCCESS;
 		}catch(Exception e){
