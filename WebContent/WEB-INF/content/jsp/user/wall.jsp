@@ -143,7 +143,7 @@
 
                    <s:form id="loadComments%{id}" action="loadComments" namespace="/message" theme="simple">
                      <s:hidden name="postId" value="%{id}"/>
-                     <s:hidden name="index" value="5"/>
+                     <s:hidden name="index" value="5" autocomplete="off"/>
 	         	     <s:hidden name="%{#attr._csrf.parameterName}" value="%{#attr._csrf.token}"/>
                      <sj:submit id="loadCommentsButton%{id}"
                                dataType="json"
@@ -283,7 +283,7 @@
 
                    <s:form id="loadComments%{id}" action="loadComments" namespace="/message" theme="simple">
                      <s:hidden name="postId" value="%{id}"/>
-                     <s:hidden name="index" value="5"/>
+                     <s:hidden name="index" value="5" autocomplete="off"/>
 	         	     <s:hidden name="%{#attr._csrf.parameterName}" value="%{#attr._csrf.token}"/>
                      <sj:submit id="loadCommentsButton%{id}"
                                dataType="json"
@@ -333,7 +333,7 @@
 	         <img id="loadGif" src="${pageContext.request.contextPath}/images/loading.gif" alt="Loading..." style="display:none; height:55px;width:55px"/> 
            <s:form id="loadPostForm" action="loadPost" namespace="/message" theme="simple">
            	 <s:hidden name="userId" value="%{user.id}"/>
-           	 <s:hidden name="index" value="7"/>
+           	 <s:hidden name="index" value="6" autocomplete="off"/>
 	         <s:hidden name="%{#attr._csrf.parameterName}" value="%{#attr._csrf.token}"/>
              <sj:submit id="loadPostButton%{user.id}"
                         dataType="json"
