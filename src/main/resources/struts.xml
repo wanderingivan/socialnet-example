@@ -19,8 +19,8 @@
 		<global-results>
 			<result name="error" type="tiles">errorLayout</result>
 		</global-results>
-		<action name="testError">
-			<result name="success" type="tiles">errorLayout</result>
+		<action name="photoCredits">
+			<result name="success" type="tiles">creditLayout</result>
 		</action>
 	</package>
 	<package name="user" namespace="/user" extends="tiles-default,json-default">
