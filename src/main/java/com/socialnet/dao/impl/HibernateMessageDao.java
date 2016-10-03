@@ -87,6 +87,7 @@ public class HibernateMessageDao extends AbstractHibernateDao<Message> implement
 		List<WallMessage> l= createCriteria(WallMessage.class)
 		                            .createAlias("wallPost", "parent")
 		                            .add(Restrictions.eq("parent.id", postId))
+		                            .addOrder(Order.asc("sent"))
 		                            .setFirstResult(index)
 		                            .setMaxResults(5)
 		                            .list();
