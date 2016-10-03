@@ -28,7 +28,6 @@ public class UserImageAction extends AbstractUserAction implements Authenticated
 			if(username==null){
 				username = authenticatedUser;
 			}
-			logger.debug("Changing cover for user " +username);
 			service.changeCoverImage(username,imageId);
 			return SUCCESS;
 		}catch(Exception e){
@@ -43,7 +42,6 @@ public class UserImageAction extends AbstractUserAction implements Authenticated
 			if(username==null){
 				username = authenticatedUser;
 			}
-			logger.debug("Changing profile image for user " +username);
 			service.changeProfilePic(username,imageId);
 			return SUCCESS;
 		}catch(Exception e){

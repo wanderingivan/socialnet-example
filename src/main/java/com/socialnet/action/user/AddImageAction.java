@@ -33,9 +33,9 @@ public class AddImageAction extends AbstractUserAction implements AuthenticatedU
 	@Action(value="addImage", results={@Result(name="success",type="redirectAction", params={"actionName","gallery"})})
 	public String execute(){
 		try{
-
-			logger.trace("Uploading image " + image);
-			logger.debug("Saving for username " + username);
+			if(logger.isDebugEnabled()){
+				logger.debug(String.format("Saving image %s for %s ", imageFileName, username));
+			}
 			String fileName = imageService.saveImage(image, imageContentType, imageFileName);
 			service.addToUserGallery(fileName,description,username);
 			return SUCCESS;

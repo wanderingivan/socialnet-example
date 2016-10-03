@@ -16,7 +16,7 @@ import com.socialnet.model.User;
 
 
 @InterceptorRefs({@InterceptorRef(value="authAwareStack")})
-@Results({@Result(name="missing",type="redirectAction",params={"actionName","search","username","${username}","searchMessage","global.no_user"})
+@Results({@Result(name="redirect",type="redirectAction",params={"actionName","search","username","${username}","missing","true"})
         })
 public class UserLookupAction extends AbstractUserAction implements AuthenticatedUserAware{
 
@@ -27,8 +27,9 @@ public class UserLookupAction extends AbstractUserAction implements Authenticate
 	private static final Logger logger = Logger.getLogger(UserLookupAction.class);
 
 	private String authenticatedUser;
-	private String searchMessage = "global.matching";
-	
+	private String searchMessage = "global.matching",
+			       missingMessage = "global.no_user";
+	private boolean missing;
 	private User user;
 	private List<User> users;
 	
@@ -44,10 +45,13 @@ public class UserLookupAction extends AbstractUserAction implements Authenticate
 			if(username==null){
 				username = authenticatedUser;
 			}
-			logger.trace("Loading user " + username);
 			user = service.loadUser(username);
-			logger.debug("Loaded user " + user);
-			if(user == null){return "missing";}
+			if(logger.isDebugEnabled()){
+				logger.debug("Loaded user " + user);
+			}
+			if(user == null){
+				return "redirect";
+			}
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Exception caught loading user " + e);
@@ -58,11 +62,16 @@ public class UserLookupAction extends AbstractUserAction implements Authenticate
 	@Action(value="search",results={@Result(name="success",type="tiles",location="userListLayout")})
 	public String loadUsers(){
 		try{
-			logger.trace("Searching for  users with username " + username);
 			users = service.findUsers(username);
-			logger.debug("Loaded users " + users);
+			if(logger.isDebugEnabled()){
+				logger.debug("Loaded users " + users);
+			}
 			username = username.toUpperCase();
-			searchMessage = getText(searchMessage);
+			if(!missing){
+				searchMessage = getText(searchMessage);
+			}else{
+				searchMessage = getText(missingMessage);
+			}
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Exception caught loading users " + e);
@@ -97,6 +106,10 @@ public class UserLookupAction extends AbstractUserAction implements Authenticate
 
 	public void setSearchMessage(String searchMessage) {
 		this.searchMessage = searchMessage;
+	}
+
+	public void setMissing(boolean missing) {
+		this.missing = missing;
 	}
 	
 }

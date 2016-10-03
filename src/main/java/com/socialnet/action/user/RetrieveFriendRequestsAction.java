@@ -27,10 +27,11 @@ public class RetrieveFriendRequestsAction extends AbstractUserAction implements
 
 	@Action(value="friend-requests",results={@Result(name="success",location="/WEB-INF/content/jsp/user/friendRequests.jsp")})
 	public String execute(){
-		logger.debug("Getting friend requests for " + username);
 		try{
 			friendRequests = service.getFriendRequests(username);
-			logger.debug("Friend Requests " + friendRequests);
+			if(logger.isDebugEnabled()){
+				logger.debug("Friend Requests " + friendRequests);
+			}
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Error getting friend requests for " + username);

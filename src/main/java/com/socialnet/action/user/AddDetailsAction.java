@@ -25,7 +25,9 @@ public class AddDetailsAction extends AbstractUserAction implements ModelDriven<
 										 @Result(name="input",type="tiles", location="userEditLayout")})
 	public String execute(){
 		try{
-			logger.trace(String.format("Adding details %s for user %d",details,userId));
+			if(logger.isTraceEnabled()){
+				logger.trace(String.format("Adding details %s for user %d",details,userId));
+			}
 			service.addDetails(details, new User(userId));// User.class is needed for the acl to function properly
 			return SUCCESS;
 		}catch(Exception e){

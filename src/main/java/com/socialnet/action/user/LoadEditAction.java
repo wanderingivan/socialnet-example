@@ -25,7 +25,9 @@ public class LoadEditAction extends AbstractUserAction implements AuthenticatedU
 	@Action(value="editPage",results={@Result(name="success",type="tiles",location="userEditLayout")})
 	public String execute(){
 		try{
-			logger.info("Loading user for editing");
+			if(logger.isTraceEnabled()){
+				logger.info("Loading user for editing");
+			}
 			if(username==null){
 				username = authenticatedUser;
 			}
