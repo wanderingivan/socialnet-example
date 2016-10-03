@@ -6,7 +6,6 @@ $.subscribe('addComment',function(event,data){
 	var result = event.originalEvent.data.result;
 	var messageId = result[0];
 	var target = $('#wp'+postId+'Comments #last');
-	console.log($('#wp'+postId+'Comments .message-form'));
     target.before(getCommentHtml(result));
     $('#commentForm'+postId+'_message').val('');
     $('#message'+messageId).toggle('slide',{direction:'right'},750);
@@ -19,12 +18,7 @@ $.subscribe('loadComments',function(event,data){
 	var postId = event.originalEvent.data.postId;
 	var result = event.originalEvent.data.result;
 	var target = $('#wp'+postId+'Comments #last');
-	console.log(result);
-	console.log(result.length);
-	console.log(event.originalEvent.data.index);
-	console.log(event.originalEvent.data.index + result.length);
 	$.each (result,function(index,data){
-		console.log(data);
 		var messageId = data[0];
 	    target.before(getCommentHtml(data));
         $('#message'+messageId).toggle('slide',{direction:'right'},750);
@@ -35,6 +29,7 @@ $.subscribe('loadComments',function(event,data){
 
 $.subscribe('loadPost',function(event,data){
 	var result = event.originalEvent.request.responseText;
+	if(result === ''){ return; }
 	var newIndex = (parseInt($('#loadPostForm_index').val()) +1);
     var target = determineWallTarget();
     target.append(result);
