@@ -105,6 +105,7 @@ body {
 	padding : 25px;
 	box-shadow : 0 0 6px rgba(0,0,0,.1);
 	background-color : #fff;
+	min-height:850px;
 }
 .user-list i {
 	color:#b3de1d;
@@ -417,11 +418,25 @@ body {
 	margin-left : -3px;
 	padding:5px;
 }
-
+.footer {
+	background-color:#000;
+	width:100%;
+	margin-top:10px;
+	color:#b3de1d
+}
+.footer a{
+	color:#c5cbd1;
+}
+.footer a:hover{
+	cursor:pointer;
+	color:#a2a9b0;
+	text-decoration:none;
+}
 .load-link {
 	border:none;
 	color :#0077CC;
-	background-color : #fff
+	background-color : #fff;
+	text-transform:capitalize;
 }
 .load-link.body {
 	background-color : #f6f6f6;

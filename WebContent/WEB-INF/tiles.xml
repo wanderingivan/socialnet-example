@@ -11,6 +11,7 @@
 		<put-attribute name="user-info" value="/WEB-INF/content/jsp/user/user-info.jsp"/>
 		<put-attribute name="sidebar" value=""/>
 		<put-attribute name="wall" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/content/jsp/base/footer.jsp"/>
 	</definition>
 	
 	<definition name="flatLayout" template="/WEB-INF/content/jsp/base/flatLayout.jsp">
@@ -18,12 +19,14 @@
 		<put-attribute name="nav" value="/WEB-INF/content/jsp/user/nav.jsp"/>
 		<put-attribute name="user-info" value="/WEB-INF/content/jsp/user/user-info.jsp"/>
 		<put-attribute name="wall" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/content/jsp/base/footer.jsp"/>
 	</definition>
 	
 	<definition name="listLayout" template="/WEB-INF/content/jsp/base/listLayout.jsp">
 	    <put-attribute name="title" value="List Layout Prototype"/>
 		<put-attribute name="nav" value="/WEB-INF/content/jsp/user/nav.jsp"/>
 	    <put-attribute name="list" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/content/jsp/base/footer.jsp"/>
 	</definition>
 	
 	<definition name="userHomeLayout" extends="baseLayout">
@@ -86,4 +89,7 @@
 		<put-attribute name="wall" value="/WEB-INF/content/jsp/base/error404.jsp"/>
 	</definition>
 	
+	<definition name="creditLayout" extends="listLayout">
+		<put-attribute name="list" value="/WEB-INF/content/jsp/base/photoCredits.jsp"/>
+	</definition>
 </tiles-definitions>

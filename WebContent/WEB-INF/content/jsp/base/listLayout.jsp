@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"/>
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/social.min.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
 	<sj:head loadFromGoogle="true" />
 	<script lang="javascript" type="text/javascript" src="${pageContext.request.contextPath}/js/prefilter.js"></script>
 	<title><tiles:insertAttribute name="title"/></title>
@@ -26,6 +26,7 @@
 <body>
     <tiles:insertAttribute name="nav"/>
     <tiles:insertAttribute name="list"/> 
+    <tiles:insertAttribute name="footer"/> 
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
