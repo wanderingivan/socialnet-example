@@ -41,6 +41,9 @@
 	                  <button class="btn btn-primary" type="submit"><s:property value="getText('global.log_in')"/></button>
     	            </div>
     	          </form>
+	      		  <div class="alert alert-info">
+	  	    		Premade accounts are username1 trough 4 with password <i>password</i>
+	              </div>
                </div>
               </div>
     	      </div>
