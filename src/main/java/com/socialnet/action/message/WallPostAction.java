@@ -44,8 +44,6 @@ public class WallPostAction extends AbstractMessageAction {
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Exception caught creating wall message"+ e);
-			System.out.println("Cause" + e.getCause());
-			e.printStackTrace();
 		}
 		return ERROR;
 	}

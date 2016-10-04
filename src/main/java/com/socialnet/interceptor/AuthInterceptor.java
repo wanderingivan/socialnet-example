@@ -16,7 +16,6 @@ public class AuthInterceptor extends AbstractInterceptor {
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
-		System.out.println("Auth Interceptor Intercepting action " + invocation.getAction().getClass().getSimpleName());
 		if(invocation.getAction() instanceof AuthenticatedUserAware){
 			if(logger.isDebugEnabled()){
 				logger.debug("Auth Interceptor Intercepting action " + invocation.getAction().getClass().getSimpleName() + "\n Inserting user" + getUserFromSecurityContext());

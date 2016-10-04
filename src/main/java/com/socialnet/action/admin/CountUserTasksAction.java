@@ -38,9 +38,7 @@ public class CountUserTasksAction extends ActionSupport implements
 			logger.debug("Message: " + message);
 			return SUCCESS;
 		}catch(Exception e){
-			logger.error("Exception caught counting tasks for " + username);
-			logger.error(e);
-			System.out.println(e);
+			logger.error("Exception caught counting tasks for " + username +" " + e);
 		}
 		return ERROR;
 	}

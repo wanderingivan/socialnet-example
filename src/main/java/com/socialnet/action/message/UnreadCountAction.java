@@ -53,10 +53,7 @@ public class UnreadCountAction extends ActionSupport implements
 			}
 			return SUCCESS;
 		}catch(Exception e){
-			logger.error("Caught exception counting unread for "+ username);
-			logger.error(e);
-			System.out.println(e);
-			e.printStackTrace();
+			logger.error("Caught exception counting unread for "+ username +" " +e);
 		}
 		return ERROR;
 	}

@@ -95,16 +95,7 @@ public class MessageDaoTests extends AbstractDaoTest{
 		
 	}
 	
-	@Test
-	@Transactional
-	public void testGetWallPost(){
-		List<String[]> post = dao.getWallPost(7, 0);
-		for(String [] t : post){
-			for(String s : t){
-				System.out.println(s);
-			}
-		}
-	}
+
 	
 	@Test
 	@Transactional
@@ -117,9 +108,6 @@ public class MessageDaoTests extends AbstractDaoTest{
 	@Transactional
 	public void testGetWallMessages(){
 		List<String []> test = dao.getWallMessages(4, 5);
-		for(String[] sa: test){
-			System.out.println(sa[0] + " " + sa[1] + " " + sa[2] + " " + sa[3]);
-		}
 		assertEquals("Incorrect number of posts retrieved",test.size(),2);
 	}
 	

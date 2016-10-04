@@ -94,10 +94,8 @@ public class Chat implements Comparable<Chat> {
 	}
 	
 	public User getOther(String username){
-		System.out.println("NAME:" + username);
 		for(User u : users){
 			if(!(u.getUsername().equals(username))){
-				System.out.println(u);
 				return u;
 				
 			}
