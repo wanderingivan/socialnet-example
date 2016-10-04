@@ -3,9 +3,9 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.devMode" value="false"/>
 	<constant name="struts.dynamicMethodInvocation" value="false"/>
-	<constant name="struts.ognl.enableExpressionCache" value="false"/>
+	<constant name="struts.ognl.enableExpressionCache" value="true"/>
     <constant name="struts.multipart.parser" value="springMultipartParser"/>
     <constant name="struts.custom.i18n.resources" value="global"/>    
 	<package name="default" namespace="/" extends="tiles-default">
