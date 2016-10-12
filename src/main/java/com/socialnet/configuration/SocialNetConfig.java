@@ -1,5 +1,7 @@
 package com.socialnet.configuration;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +36,8 @@ import com.socialnet.util.SpringMultipartParser;
 @PropertySource("classpath:application.properties")
 public class SocialNetConfig {
 
+    private static final String DEFAULT_IMAGE_FOLDER = "/src/images";
+    
 	@Value("${image.folder}")
 	private String picFolder;
 	
@@ -65,7 +69,14 @@ public class SocialNetConfig {
 	
     
     @Bean
-	public ImageUtil imageUtil(){
+	public ImageUtil imageUtil() throws IOException{
+	    if(picFolder.isEmpty()){// Revert to folder in src
+	        picFolder = System.getProperty("user.dir").concat(DEFAULT_IMAGE_FOLDER);
+	        if(!new File(picFolder).exists()){
+	            throw new IOException("Misconfiguration: Cannot access imagefolder - images won't load ");
+	        }
+
+	    }
 		ImageUtil util = new ImageUtil(picFolder,Boolean.valueOf(convertToJpg),Long.valueOf(maxUncompresssed));
 		return util;
 	}
@@ -101,7 +112,7 @@ public class SocialNetConfig {
 	}
 	
 	@Bean
-	public ImageService imageService(){
+	public ImageService imageService() throws IOException{
 		return new ImageServiceImpl(imageUtil(),placeholder);
 	}
 	
