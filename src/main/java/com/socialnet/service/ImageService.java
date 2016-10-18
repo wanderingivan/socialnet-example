@@ -22,7 +22,7 @@ public interface ImageService  {
 	 */
 	String getB64(String path);
 	
-	byte [] loadImage(String path);
+	File loadImage(String path);
 	
 	/**
 	 * Saves an image to a predefined destination

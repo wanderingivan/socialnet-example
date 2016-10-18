@@ -5,11 +5,12 @@ import org.apache.commons.codec.binary.Base64;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
@@ -54,14 +55,19 @@ public class ImageUtil {
 	public String encodeToB64String(String fileName) throws IOException{
 		return Base64.encodeBase64String(getByteArray(fileName));
 	}
+	
 	/**
-	 * Loads an image into a <code>byte</code> []  from a preset directory
+	 * Loads an image into a from a preset directory
 	 * @param fileName the file to load
 	 * @return
 	 */
-	public byte[] loadImage (String fileName)  throws IOException{
-		return getByteArray(fileName);
-	}
+	public File loadImage(String path) throws IOException{
+        File f = new File(defaultDestPath,path);
+        if(!f.exists()){
+            throw new IOException("Missing image file");
+        }
+        return f;
+    }
 	
 	/**
 	 *  Saves an image to a preset folder.
@@ -129,29 +135,15 @@ public class ImageUtil {
 	}	
 
 	/**
-	 * Uses javax.imageio.ImageIo
-	 * to load images from the filesystem 
+	 * Uses java.nio.file.Files
+	 * to load images from the filesystem into a <code>byte[]</code> 
 	 * @param path the final path to the file resource
-	 * @return
+	 * @throws IOException
 	 */
 	private  byte [] getByteArray(String path) throws IOException{
-		ByteArrayOutputStream baos = null;
-		try {
-			baos = new ByteArrayOutputStream();
-			BufferedImage originalImage = ImageIO.read(new File(defaultDestPath,path));
-			// convert BufferedImage to byte array
-			ImageIO.write(originalImage, "jpg", baos);			
-			baos.flush();
-			return baos.toByteArray();
-		}finally{
-			if(baos != null){
-				try{
-					baos.close();
-				}catch(IOException e){
-				}
-			}
-		}
+	    return Files.readAllBytes((Paths.get(defaultDestPath, path)));
 	}
+	
 	/**
 	 * Converts a Buffered image to a jpg format.
 	 * Sets image backgrounds to white by default.

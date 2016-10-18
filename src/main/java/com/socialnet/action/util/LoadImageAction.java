@@ -1,6 +1,8 @@
 package com.socialnet.action.util;
 
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -28,7 +30,7 @@ public class LoadImageAction implements ServletRequestAware{
 		return "ImageResult";
 	}
 
-	public byte[] getImageInBytes() {
+	public File getImage() {
 		return service.loadImage(path);
 	}
 	

@@ -1,12 +1,15 @@
 package com.socialnet.action.result;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.Result;
-
 import com.socialnet.action.util.LoadImageAction;
 
 public class ImageBytesResult implements Result {
@@ -24,8 +27,21 @@ public class ImageBytesResult implements Result {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType(action.getImageContentType());
 		
-		response.getOutputStream().write(action.getImageInBytes());
-		response.getOutputStream().flush();
+		File image = action.getImage();
+		response.setContentLength((int)image.length());
+		
+		FileInputStream in = new FileInputStream(image);
+	    OutputStream out = response.getOutputStream();
+	    try{
+	        byte[] buf = new byte[1024];
+	        int count = 0;
+	        while ((count = in.read(buf)) >= 0) {
+	           out.write(buf, 0, count);
+	        }
+	    }finally{
+	       out.close();
+	       in.close();
+	    }
 	}
 
 }
