@@ -38,8 +38,7 @@ public class TasksAction extends ActionSupport implements
 			service.addTask(task,username,assigned);
 			return SUCCESS;
 		}catch(Exception e){
-			logger.error("Exception caught adding task");
-			logger.error(e);
+			logger.error("Exception caught adding task\n" +e);
 		}
 		return ERROR;
 	}
@@ -50,8 +49,7 @@ public class TasksAction extends ActionSupport implements
 			service.completeTask(task.getId(),comment);
 			return SUCCESS;
 		}catch(Exception e){
-			logger.error("Exception caught completing task");
-			logger.error(e);
+			logger.error("Exception caught completing task\n" +e);
 		}
 		return ERROR;
 	}
@@ -62,8 +60,7 @@ public class TasksAction extends ActionSupport implements
 			service.removeTask(task.getId());
 			return SUCCESS;
 		}catch(Exception e){
-			logger.error("Exception caught removing task");
-			logger.error(e);
+			logger.error("Exception caught removing task\n" + e);
 		}
 		return ERROR;
 	}

@@ -34,7 +34,9 @@ public class RetrieveTasksAction extends ActionSupport implements AuthenticatedU
 	@Action(value="userTasks", results={@Result(name="success",location="/WEB-INF/content/jsp/admin/tasks.jsp")})
 	public String userTasks(){
 		try{
-			logger.debug("Loading tasks for user " + username);
+		    if(logger.isDebugEnabled()){
+		        logger.debug("Loading tasks for user " + username);
+		    }
 			tasks = service.retrieveUserTasks(username);
 			return SUCCESS;
 		}catch(Exception e){
@@ -47,7 +49,9 @@ public class RetrieveTasksAction extends ActionSupport implements AuthenticatedU
 	@Action(value="pendingTasks", results={@Result(name="success",location="json")})
 	public String pendingTasks(){
 		try{
-			logger.debug("Loading pending tasks for user " + username);
+		    if(logger.isDebugEnabled()){
+		        logger.debug("Loading pending tasks for user " + username);
+		    }
 			tasks = service.retrieveUserPendingTasks(username);
 			return SUCCESS;
 		}catch(Exception e){
@@ -63,8 +67,7 @@ public class RetrieveTasksAction extends ActionSupport implements AuthenticatedU
 			tasks = service.latestTasks();
 			return SUCCESS;
 		}catch(Exception e){
-			logger.error("Exception caught loading tasks");
-			logger.error(e);
+			logger.error("Exception caught loading tasks \n" + e);
 		}
 		return ERROR;
 	}
@@ -75,8 +78,7 @@ public class RetrieveTasksAction extends ActionSupport implements AuthenticatedU
 			tasks = service.retrieveAllTasks();
 			return SUCCESS;
 		}catch(Exception e){
-			logger.error("Exception caught loading tasks");
-			logger.error(e);
+			logger.error("Exception caught loading tasks \n" +e);
 		}
 		return ERROR;
 	}

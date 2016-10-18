@@ -15,7 +15,9 @@ public class DeleteWallPostAction extends AbstractMessageAction {
 	
 	@Action(value="deletePost",results={@Result(name="success", type="redirectAction",params={"namespace","/","actionName","index"})})
 	public String execute(){
-		logger.info(String.format("User %s deleting wall post %d",username,postId));
+        if(logger.isInfoEnabled()){
+            logger.info(String.format("User %s deleting wall post %d",username,postId));
+        }
 		try{
 			service.deleteWallPost(postId);
 			return SUCCESS;

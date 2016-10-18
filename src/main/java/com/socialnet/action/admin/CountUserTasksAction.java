@@ -35,7 +35,9 @@ public class CountUserTasksAction extends ActionSupport implements
 			tasks = service.countPending(username);
 			message = String.valueOf(tasks)
 					        .concat(getText("global.pending_tasks"));
-			logger.debug("Message: " + message);
+			if(logger.isDebugEnabled()){
+			    logger.debug("Message: " + message);
+			}
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Exception caught counting tasks for " + username +" " + e);

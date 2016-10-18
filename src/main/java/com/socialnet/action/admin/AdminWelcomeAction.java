@@ -28,11 +28,9 @@ public class AdminWelcomeAction extends ActionSupport implements AuthenticatedUs
 	private static final Logger logger = Logger.getLogger(AdminWelcomeAction.class);
 
 	
-	@Autowired
 	private MessageService	messageService;
 	
 	
-	@Autowired
 	private UserService userService;
 	
 	private List<User> newestUsers;
@@ -43,31 +41,20 @@ public class AdminWelcomeAction extends ActionSupport implements AuthenticatedUs
 
 	@Action(value="welcome",results={@Result(name="success",location="/WEB-INF/content/jsp/admin/admin.jsp")})
 	public String execute(){
-		logger.trace("Loading Admin Homepage");
 		newestUsers = userService.newUsers();
 		userChats = messageService.getUserChats(username);
 		return SUCCESS;
 	}
 
-
-	public MessageService getMessageService() {
-		return messageService;
-	}
-
-
+	@Autowired
 	public void setMessageService(MessageService messageService) {
 		this.messageService = messageService;
 	}
 
-	public UserService getUserService() {
-		return userService;
-	}
-
-
+	@Autowired
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
-
 
 	public List<User> getNewestUsers() {
 		return newestUsers;
@@ -77,16 +64,13 @@ public class AdminWelcomeAction extends ActionSupport implements AuthenticatedUs
 		return userChats;
 	}
 
-
 	public void setUserChats(List<Chat> userChats) {
 		this.userChats = userChats;
 	}
 
-
 	public void setNewestUsers(List<User> newestUsers) {
 		this.newestUsers = newestUsers;
 	}
-
 
 	@Override
 	public void setUser(String username) {

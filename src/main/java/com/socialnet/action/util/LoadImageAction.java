@@ -15,7 +15,6 @@ import com.socialnet.service.ImageService;
 @ParentPackage("util")
 public class LoadImageAction implements ServletRequestAware{
 
-	@Autowired
 	private ImageService service;
 	
 	String path;
@@ -59,6 +58,7 @@ public class LoadImageAction implements ServletRequestAware{
 		this.path = imagePath;
 	}
 
+	@Autowired
 	public void setService(ImageService service) {
 		this.service = service;
 	}

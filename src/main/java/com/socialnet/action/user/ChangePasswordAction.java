@@ -34,7 +34,9 @@ public class ChangePasswordAction extends AbstractUserAction implements
 											@Result(name="input", type="tiles", location="changePasswordLayout")})
 	public String changePassword(){
 		try{
-			logger.info("Changing password for user " + user);
+	        if(logger.isInfoEnabled()){
+	            logger.info("Changing password for user " + user);
+	        }
 			service.changePassword(user,oldPassword,newPassword);
 			http.logout();
 			return SUCCESS;

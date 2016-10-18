@@ -46,8 +46,6 @@ public class RetrieveUnreadMessagesAction extends ActionSupport implements
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Caught exception "+ e);
-			logger.error(e);
-			e.printStackTrace();
 		}
 		return ERROR;
 	}

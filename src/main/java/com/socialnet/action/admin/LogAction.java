@@ -30,11 +30,13 @@ public class LogAction extends ActionSupport {
 	@Action(value="logAction",results={@Result(name="success",location="/WEB-INF/content/jsp/admin/log.jsp")})
 	public String execute(){
 		try{
-			logger.debug("Retrieving Log " + logFile);
+		    if(logger.isTraceEnabled()){
+		        logger.trace("Retrieving Log " + logFile);
+		    }
 			logContents = service.getLog(logFile);
 			return SUCCESS;
 		}catch(Exception e){
-			logger.error("Exception caught when retrieving log\n: " + e );
+			logger.error("Exception caught when retrieving log" + logFile +"\n: " + e );
 		}
 		return ERROR;
 	}

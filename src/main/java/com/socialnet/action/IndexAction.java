@@ -9,6 +9,12 @@ import org.apache.struts2.convention.annotation.Result;
 import com.socialnet.interceptor.AuthenticatedUserAware;
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ *  Loads the homepage of an authenticated user or redirects to
+ *  login page 
+ * 
+ *
+ */
 @ParentPackage("default")
 @InterceptorRefs({@InterceptorRef(value="authAwareStack")})
 public class IndexAction extends ActionSupport implements AuthenticatedUserAware{

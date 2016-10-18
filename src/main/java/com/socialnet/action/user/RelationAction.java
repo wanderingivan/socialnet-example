@@ -25,7 +25,9 @@ public class RelationAction extends AbstractUserAction implements AuthenticatedU
 	@Action(value="friendRequest",results={@Result(name="success", type="json")})
 	public String execute(){
 		try{
-			logger.info("Sending friend request to user " + receiver+ " from " + authenticatedUser);
+	        if(logger.isInfoEnabled()){
+	            logger.info("Sending friend request to user " + receiver+ " from " + authenticatedUser);
+	        }
 			service.sendFriendRequest(receiver,authenticatedUser);
 			message = getText("global.friend_request_sent");
 			return SUCCESS;
@@ -38,7 +40,9 @@ public class RelationAction extends AbstractUserAction implements AuthenticatedU
 	@Action(value="removeFriend",results={@Result(name="success", type="redirectAction", params={"actionName","show","username","${receiver}"})})
 	public String removeFriendShip(){
 		try{
-			logger.info("Removing friendship for " + receiver + " " + authenticatedUser);
+            if(logger.isInfoEnabled()){
+                logger.info("Removing friendship for " + receiver + " " + authenticatedUser);
+            }
 			service.removeFriendship(receiver,authenticatedUser);
 			return SUCCESS;
 		}catch(Exception e){

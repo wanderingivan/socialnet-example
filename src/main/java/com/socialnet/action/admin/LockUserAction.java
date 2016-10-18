@@ -19,7 +19,6 @@ public class LockUserAction extends ActionSupport {
 	private static final long serialVersionUID = 8311269827905963276L;
 	private static final Logger logger = Logger.getLogger(LockUserAction.class); 
 	
-	@Autowired
 	private UserService service;
 	
 	private String username;
@@ -27,35 +26,33 @@ public class LockUserAction extends ActionSupport {
 
 	@Action(value="enableUser",results={@Result(name="success",type="redirectAction",params={"namespace","/user","actionName","show","username","${username}"})})
 	public String execute(){
-		logger.info("Locking user with username: " + username);
+        if(logger.isInfoEnabled()){
+            logger.info("Locking user with username: " + username);
+        }
 		try{
 			service.enableUser(username);
 			return SUCCESS;
 		}catch(Exception e){
-			logger.error("Error enabling user: "+ username);
-			logger.error(e);
-			e.printStackTrace();
+			logger.error("Error enabling user: "+ username + "\n" +e);
 		}
 		return ERROR;
 	}
 
 	@Action(value="disableUser",results={@Result(name="success",type="redirectAction",params={"namespace","/user","actionName","show","username","${username}"})})
 	public String disableUser() {
-		logger.info("Locking user with username: " + username);
+        if(logger.isInfoEnabled()){
+            logger.info("Locking user with username: " + username);
+        }
 		try{
 			service.disableUser(username);
 			return SUCCESS;
 		}catch(Exception e){
-			logger.error("Error enabling user: "+ username);
-			logger.error(e);
+			logger.error("Error enabling user: "+ username + "\n" + e);
 		}
 		return ERROR;	
 	}
-	
-	public UserService getService() {
-		return service;
-	}
 
+	@Autowired
 	public void setService(UserService service) {
 		this.service = service;
 	}

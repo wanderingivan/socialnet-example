@@ -26,7 +26,9 @@ public class DeleteUserAction extends AbstractUserAction implements Authenticate
 	@Action(value="delete",results={@Result(name="success", type="redirectAction", params={"actionName","adminHome"})})
 	public String execute(){
 		try{
-			logger.info(" User  "+ authenticatedUser + "Deleting User "+ username);
+	        if(logger.isInfoEnabled()){
+	            logger.info(" User  "+ authenticatedUser + "Deleting User "+ username);
+	        }
 			imageService.removeImages(service.getUserImages(username));
 			service.delete(username);
 			return SUCCESS;

@@ -41,7 +41,6 @@ public class AddImageAction extends AbstractUserAction implements AuthenticatedU
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Exception caught uploading file " + e);
-			e.printStackTrace();
 		}
 		return ERROR;
 	}

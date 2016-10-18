@@ -36,7 +36,9 @@ public class CreateUpdateAction extends ActionSupport implements ModelDriven<Use
 								    @Result(name="input",location="/WEB-INF/content/jsp/base/create.jsp")})
 	public String execute(){
 		try{
-			logger.info(String.format("Creating user with username %s and email %s",user.getUsername(),user.getEmail()));
+	        if(logger.isInfoEnabled()){
+	            logger.info(String.format("Creating user with username %s and email %s",user.getUsername(),user.getEmail()));
+	        }
 			userService.createUser(user);
 			return SUCCESS;
 			

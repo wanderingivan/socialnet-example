@@ -23,7 +23,9 @@ public class FriendRequestAction extends AbstractUserAction implements
 	@Action(value="acceptFriendRequest",results={@Result(name="success", type="json")})
 	public String addFriend(){
 		try{
-			logger.info(String.format("User %s accepting friend request %d",user,friendRequestId ));
+	        if(logger.isInfoEnabled()){
+	            logger.info(String.format("User %s accepting friend request %d",user,friendRequestId ));
+	        }
 			service.acceptFriendRequest(friendRequestId);
 			message = getText("global.friend_request_accepted");
 			return SUCCESS;
@@ -36,7 +38,9 @@ public class FriendRequestAction extends AbstractUserAction implements
 	@Action(value="denyFriendRequest",results={@Result(name="success",type="json")})
 	public String execute(){
 		try{
-			logger.info(String.format("User %s denying friend request %d",user,friendRequestId ));
+	        if(logger.isInfoEnabled()){
+	            logger.info(String.format("User %s denying friend request %d",user,friendRequestId ));
+	        }
 			service.denyFriendRequest(friendRequestId);
 			message = getText("global.friend_request_denied");
 			return SUCCESS;

@@ -25,7 +25,9 @@ public class FriendRequestsCount extends AbstractUserAction implements
 
 	@Action(value="friendrequest-count",results={@Result(name="success",type="json")})
 	public String execute(){
-		logger.debug("Getting friend request count for " + username);
+        if(logger.isTraceEnabled()){
+            logger.trace("Getting friend request count for " + username);
+        }
 		try{
 			count = service.countFriendRequests(username);
 			if(count == 1){

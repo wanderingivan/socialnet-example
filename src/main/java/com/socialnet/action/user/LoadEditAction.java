@@ -26,7 +26,7 @@ public class LoadEditAction extends AbstractUserAction implements AuthenticatedU
 	public String execute(){
 		try{
 			if(logger.isTraceEnabled()){
-				logger.info("Loading user for editing");
+				logger.trace("Loading user for editing");
 			}
 			if(username==null){
 				username = authenticatedUser;

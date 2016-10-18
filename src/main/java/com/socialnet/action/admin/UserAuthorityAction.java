@@ -30,11 +30,12 @@ public class UserAuthorityAction extends ActionSupport {
 	@Action(value="changeRole",results={@Result(name="success",type="redirectAction",params={"namespace","/user","actionName","loadUser","username","${username}"})})
 	public String execute(){
 		try{
-			logger.info(String.format("Changing user authority for %s to %s",username,authority));
+	        if(logger.isInfoEnabled()){
+	            logger.info(String.format("Changing user authority for %s to %s",username,authority));
+	        }
 			service.changeAuthority(username,authority);
 		}catch(Exception e){
-			logger.error(String.format("Error changing user authority for %s to %s",username,authority));
-			logger.error(e);
+			logger.error(String.format("Eexception %s caught changing user authority for %s to %s",username,authority,e));
 		}
 		return ERROR;
 	}

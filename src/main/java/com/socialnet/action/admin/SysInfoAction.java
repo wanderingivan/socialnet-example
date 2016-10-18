@@ -31,8 +31,7 @@ public class SysInfoAction extends ActionSupport{
 			loadAverage = (opBean.getSystemLoadAverage()/opBean.getAvailableProcessors()) * 100;
 			return SUCCESS;
 		}catch(Exception e){
-			logger.error("Error executing SysInfoAction");
-			logger.error(e);
+			logger.error("Error executing SysInfoAction\n" +e);
 		}
 		return ERROR;
 	}
@@ -43,8 +42,7 @@ public class SysInfoAction extends ActionSupport{
 			uptime = getDurationBreakdown(ManagementFactory.getRuntimeMXBean().getUptime());
 			return SUCCESS;
 		}catch(Exception e){
-			logger.error("Error executing SysInfoAction");
-			logger.error(e);
+			logger.error("Error executing SysInfoAction\n" +e);
 		}
 		return ERROR;
 	}

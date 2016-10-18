@@ -18,7 +18,9 @@ public class LikeAction extends AbstractMessageAction {
 	@Action(value="like",results={@Result(name="success",type="json")})
 	public String execute(){
 		try{
-			logger.info("Adding like to post " + postId + " by "+username);
+	        if(logger.isInfoEnabled()){
+	            logger.info("Adding like to post " + postId + " by "+username);
+	        }
 			service.addLike(username, postId);
 			return SUCCESS;
 		}catch(Exception e){
