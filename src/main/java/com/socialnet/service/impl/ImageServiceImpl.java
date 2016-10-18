@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -26,6 +27,8 @@ import com.socialnet.util.ImageUtil;
 public class ImageServiceImpl implements ImageService {
 	
 
+    private static final Logger logger = Logger.getLogger(ImageServiceImpl.class);
+    
 	private String placeholderFilename;
 	private ImageUtil imageUtil;
 	
@@ -46,15 +49,15 @@ public class ImageServiceImpl implements ImageService {
 	public String getB64(String path){
 		try{
 			return imageUtil.encodeToB64String(path);
-		}catch(IOException missingFile){
-			System.out.println("Cant open file "+ path);
-			try{
-			    return imageUtil.encodeToB64String(placeholderFilename);
-			}catch(IOException ignore){
-				System.out.println("Cant open file "+ placeholderFilename );
-				throw new RuntimeException("Can't open placeholder file ");
-			}
-		}
+        }catch(IOException missingFile){
+            logger.error("Cant open file "+ path);
+            try{
+                return imageUtil.encodeToB64String(placeholderFilename);
+            }catch(IOException ignore){
+                logger.error("Cant open file "+ placeholderFilename );
+                throw new IllegalArgumentException("Can't open placeholder file ");
+            }
+        }
 	}
 
 	/**
@@ -68,14 +71,14 @@ public class ImageServiceImpl implements ImageService {
 		try{
 			return imageUtil.loadImage(path);
 		}catch(IOException missingFile){
-			System.out.println("Cant open file "+ path);
-			try{
-			    return imageUtil.loadImage(placeholderFilename);
-			}catch(IOException ignore){
-				System.out.println("Cant open file "+ placeholderFilename );
-				throw new RuntimeException("Can't open placeholder file ");
-			}
-		}
+            logger.error("Cant open file "+ path);
+            try{
+                return imageUtil.loadImage(placeholderFilename);
+            }catch(IOException ignore){
+                logger.error("Cant open file "+ placeholderFilename );
+                throw new IllegalArgumentException("Can't open placeholder file ");
+            }
+        }
 	}
 
 
@@ -84,7 +87,9 @@ public class ImageServiceImpl implements ImageService {
 	@CacheEvict(value="image",key="#path")
 	public void removeImage(String path) throws IOException {
 		File file = new File(path);
-		file.delete();
+		if(file.exists()){
+		    file.delete();
+		}
 	}
 
 	@Override
