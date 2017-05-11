@@ -6,7 +6,8 @@
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>SocialNet Struts2 Example Webapp</name>
-  <url></url>
+  <url>http://github.com/wanderingivan/socialnet-example</url>
+  <description>A basic social net web app built with Spring, Struts2, Tiles and Hibernate.</description>
 
   <properties>
   
@@ -15,6 +16,10 @@
   	<spring.version>4.3.1.RELEASE</spring.version>
   	<spring.security.version>4.1.1.RELEASE</spring.security.version>
   	<hibernate.version>4.3.11.Final</hibernate.version>
+   	<h2.version>1.4.194</h2.version>
+  	<mysql.version>5.1.39</mysql.version>
+  	<sql.maven.version>1.5</sql.maven.version>
+  	<sql.dir>src/main/resources/scripts/sql</sql.dir> 	
   	
   </properties>
 
@@ -161,8 +166,14 @@
   	<dependency>
   		<groupId>mysql</groupId>
   		<artifactId>mysql-connector-java</artifactId>
-  		<version>5.1.39</version>
+  		<version>${mysql.version}</version>
   	</dependency>
+  	
+  	<dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>${h2.version}</version>
+    </dependency>
   	
   	<dependency>
   		<groupId>javax.servlet</groupId>

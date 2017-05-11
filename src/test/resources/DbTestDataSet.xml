@@ -24,7 +24,7 @@
 	<friendships user1_id="9" user2_id="5"/>
 	<friendships user1_id="6" user2_id="7"/>
 	<friendships user1_id="7" user2_id="6"/>
-	<friend_requests sender_id="7" receiver_id="6" accepted="0" denied="0"/> 
+	<friend_requests friend_request_id="2" sender_id="7" receiver_id="6" accepted="0" denied="0"/> 
 	<friend_requests friend_request_id="1" sender_id="5" receiver_id="2" accepted="0" denied="0"/> 
 	<wall_posts wall_post_id="3" owner_id="8"/>
 	<wall_posts wall_post_id="4" owner_id="7"/>

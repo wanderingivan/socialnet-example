@@ -86,6 +86,7 @@ public class MessageDaoTests extends AbstractDaoTest{
 
 		dao.postWallMessage(poster,3,"message2");
 		WallPost post = dao.getWallPost(3);
+		System.out.println(post.getMessages());
 		assertEquals("Incorrect number of messages saved",2,post.getMessages().size());
 		
 		WallMessage msg = post.getMessages().get(1);
