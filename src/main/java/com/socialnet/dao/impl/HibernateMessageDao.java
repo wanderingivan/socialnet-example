@@ -75,8 +75,10 @@ public class HibernateMessageDao extends AbstractHibernateDao<Message> implement
 		                                               .setParameter("message",message)
 		                                               .uniqueResult();
 		WallPost wp = (WallPost) session.load(WallPost.class, wallPostId);
-		wp.addMessage(newMessage);
-		session.saveOrUpdate(wp); // update cache
+		if(!wp.getMessages().contains(newMessage)){
+		    wp.addMessage(newMessage);
+		    session.saveOrUpdate(wp); // update cache
+		}
 		return convertToStringArray(newMessage);
 		
 	}

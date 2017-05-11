@@ -126,10 +126,10 @@ public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration{
 	 * Note : this is assuming mysql is used as db 
 	 */
 	private String classIdentityQuery(){
-		return "SELECT @@IDENTITY";
+	    return "SELECT LAST_INSERT_ID()";
 	}
 
 	private String sidIdentityQuery(){
-		return "SELECT @@IDENTITY";
+        return "SELECT LAST_INSERT_ID()";
 	}
 }
