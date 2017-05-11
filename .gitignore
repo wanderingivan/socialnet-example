@@ -7,3 +7,4 @@ target/
 .settings/
 /build/
 /target/
+.tern-project
