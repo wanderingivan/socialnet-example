@@ -310,161 +310,216 @@
   		</configuration>
 	  </plugin>
 	  
-	  	  <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>sql-maven-plugin</artifactId>
-        <version>1.5</version>
-
-        <dependencies>
-  	      <dependency>
-  			<groupId>mysql</groupId>
-  			<artifactId>mysql-connector-java</artifactId>
-  		    <version>5.1.39</version>
-  	      </dependency>
-        </dependencies>
-
-        <configuration>
-          <driver>com.mysql.jdbc.Driver</driver>
-          <url>jdbc:mysql://localhost:3306?useSSL=false</url>
-          <username>root</username>
-          <password>password</password>
-          <!--all executions are ignored if -Dmaven.test.skip.database=true-->
-        </configuration>
-
-        <executions>
-          <execution>
-            <id>drop-db-before-test-if-any</id>
-            <phase>process-test-resources</phase>
-            <goals>
-              <goal>execute</goal>
-            </goals>
-            <configuration>
-              <url>jdbc:mysql://localhost:3306?useSSL=false</url>
-              <autocommit>true</autocommit>
-              <sqlCommand>drop database SOCIALNETTEST</sqlCommand>              
-              <onError>continue</onError>
-              <!-- ignore error when database is not available -->
-              <skip>${test.build.database.skip}</skip>
-            </configuration>
-          </execution>
-
-          <execution>
-            <id>create-test-db</id>
-            <phase>process-test-resources</phase>
-            <goals>
-              <goal>execute</goal>
-            </goals>
-            <configuration>
-              <url>jdbc:mysql://localhost:3306?useSSL=false</url>
-              <autocommit>true</autocommit>
-              <sqlCommand>create database SOCIALNETTEST</sqlCommand>
-              <skip>${test.build.database.skip}</skip>
-            </configuration>
-          </execution>
-
-          <execution>
-            <id>create-test-schema</id>
-            <phase>process-test-resources</phase>
-            <goals>
-              <goal>execute</goal>
-            </goals>
-            <configuration>
-              <url>jdbc:mysql://localhost:3306/SOCIALNETTEST?useSSL=false</url>
-              <autocommit>true</autocommit>
-              <srcFiles>
-                <srcFile>src/scripts/sql/create_database.sql</srcFile>
-              </srcFiles>
-              <skip>${test.build.database.skip}</skip>
-            </configuration>
-          </execution>
-          
-          <execution>
-            <id>create-test-procedures</id>
-            <phase>process-test-resources</phase>
-            <goals>
-              <goal>execute</goal>
-            </goals>
-            <configuration>
-              <url>jdbc:mysql://localhost:3306/SOCIALNETTEST?useSSL=false</url>
-              <delimiter>//</delimiter>
-              <autocommit>true</autocommit>
-              <srcFiles>
-                <srcFile>src/scripts/sql/create_procedures.sql</srcFile>
-              </srcFiles>
-              <skip>${test.build.database.skip}</skip>
-            </configuration>
-          </execution>
- 
-           <execution>
-            <id>create-db</id>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>execute</goal>
-            </goals>
-            <configuration>
-              <url>jdbc:mysql://localhost:3306?useSSL=false</url>
-              <autocommit>true</autocommit>
-              <sqlCommand>create database if not exists SOCIALNETDATA</sqlCommand>
-              <skip>${build.database.skip}</skip>
-            </configuration>
-          </execution>
-
-          <execution>
-            <id>create-schema</id>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>execute</goal>
-            </goals>
-            <configuration>
-              <url>jdbc:mysql://localhost:3306/SOCIALNETDATA?useSSL=false</url>
-              <autocommit>true</autocommit>
-              <srcFiles>
-                <srcFile>src/scripts/sql/create_database.sql</srcFile>
-              </srcFiles>
-              <skip>${build.database.skip}</skip>
-            </configuration>
-          </execution>
-          
-          <execution>
-            <id>create-procedures</id>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>execute</goal>
-            </goals>
-            <configuration>
-              <url>jdbc:mysql://localhost:3306/SOCIALNETDATA?useSSL=false</url>
-              <delimiter>//</delimiter>
-              <autocommit>true</autocommit>
-              <srcFiles>
-                <srcFile>src/scripts/sql/create_procedures.sql</srcFile>
-              </srcFiles>
-              <skip>${build.database.skip}</skip>
-            </configuration>
-          </execution>
-          
-          <execution>
-            <id>create-add-preset-data</id>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>execute</goal>
-            </goals>
-            <configuration>
-              <url>jdbc:mysql://localhost:3306/SOCIALNETDATA?useSSL=false</url>
-              <autocommit>true</autocommit>
-              <srcFiles>
-                <srcFile>src/scripts/sql/createPresetDatabase.sql</srcFile>
-              </srcFiles>
-              <skip>${build.database.skip}</skip>
-              <skip>${build.preset.skip}</skip>
-            </configuration>
-          </execution>
-          
-        </executions>
-      </plugin>
-      
     </plugins>  
+  
+    <resources>
+      <resource>
+        <directory>src/main/resources/</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
   
     <finalName>SocialNet</finalName>
   </build>
 
+  <profiles>
+  
+    <profile>
+      <id>h2-db</id>
+      <activation>
+      	<activeByDefault>true</activeByDefault>
+      </activation>
+      
+      <properties>
+        <db.url>jdbc:h2:file:./target/db/testdb</db.url>
+        <db.user>sa</db.user>
+        <db.password>sa</db.password>
+        <db.driver>org.h2.Driver</db.driver>
+        <hb.dialect>org.hibernate.dialect.H2Dialect</hb.dialect>
+      </properties>
+      
+     <build>
+        <plugins>
+          <plugin>
+
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>sql-maven-plugin</artifactId>
+            <version>${sql.maven.version}</version>
+            
+            <dependencies>
+  			  <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2.version}</version>
+              </dependency>
+            </dependencies> 
+            
+ 			<configuration>
+              <driver>${db.driver}</driver>
+              <url>${db.url}</url>
+    		  <username>${db.user}</username>
+    		  <password>${db.password}</password>
+    		  <autocommit>true</autocommit>
+  		    </configuration>   
+  		             
+  			<executions>
+  			
+    		  <execution>
+      		    <id>create-db</id>
+      		    <phase>process-classes</phase><!-- process-classes instead of install so it is run every time tomcat7:run goal is selected -->
+      		    <goals>
+        		  <goal>execute</goal>
+      		    </goals>
+      		    <configuration>
+                  <srcFiles>
+                    <srcFile>${sql.dir}/create_database.sql</srcFile>
+                  </srcFiles>
+                  <skip>${build.database.skip}</skip>
+                </configuration>
+      		  </execution>
+ 
+      		  <execution>
+      		  	<id>create-procedures</id>
+      		  	<phase>process-classes</phase>
+      		    <goals>
+        		  <goal>execute</goal>
+      		    </goals>
+      		    <configuration>
+      		      <delimiter>//</delimiter>
+                  <srcFiles>
+                    <srcFile>${sql.dir}/create_procedures_h2.sql</srcFile>
+                  </srcFiles>
+                  <skip>${build.database.skip}</skip>
+                </configuration>
+      		  </execution>
+      		  
+      		  <execution>
+      		  	<id>add-preset-data</id>
+      		  	<phase>process-classes</phase>
+      		    <goals>
+        		  <goal>execute</goal>
+      		    </goals>
+      		    <configuration>
+                  <srcFiles>
+                    <srcFile>${sql.dir}/create_preset_database.sql</srcFile>
+                  </srcFiles>
+                  <skip>${build.preset.skip}</skip>
+                </configuration>
+      		  </execution>
+      		  
+      		</executions>
+          </plugin>
+        </plugins>
+      </build>      
+    
+    </profile>
+    
+    <profile>
+      <id>mysql-db</id>
+      
+     <properties>
+        <db.url>jdbc:mysql://localhost:3306/SOCIALNETDATA?useSSL=false</db.url>
+        <db.user>root</db.user>
+        <db.password>password</db.password>
+        <db.driver>com.mysql.jdbc.Driver</db.driver>
+        <hb.dialect>org.hibernate.dialect.MySQLDialect</hb.dialect>
+      </properties> 
+      
+      <build>
+        <plugins>
+          <plugin>
+          
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>sql-maven-plugin</artifactId>
+            <version>${sql.maven.version}</version>
+            
+            <dependencies>
+  	          <dependency>
+  			    <groupId>mysql</groupId>
+  			    <artifactId>mysql-connector-java</artifactId>
+  		        <version>${mysql.version}</version>
+  	          </dependency>
+            </dependencies>           
+
+           <configuration>
+              <driver>${db.driver}</driver>
+              <url>${db.url}</url>
+    		  <username>${db.user}</username>
+    		  <password>${db.password}</password>
+    		  <autocommit>true</autocommit>
+  		    </configuration> 
+            
+            <executions>
+              <execution>
+                <id>create-db</id>
+                <phase>process-classes</phase><!-- process-classes instead of install so it is run every time tomcat7:run goal is selected -->
+                <goals>
+                  <goal>execute</goal>
+                </goals>
+                <configuration>
+                  <url>jdbc:mysql://localhost:3306?useSSL=false</url>
+                  <autocommit>true</autocommit>
+                  <sqlCommand>create database if not exists SOCIALNETDATA</sqlCommand>
+                  <skip>${build.database.skip}</skip>
+                </configuration>
+              </execution>
+              
+              <execution>
+                <id>create-schema</id>
+                <phase>process-classes</phase>
+                <goals>
+                  <goal>execute</goal>
+                </goals>
+                <configuration>
+                  <url>${db.url}</url>
+                  <autocommit>true</autocommit>
+                  <srcFiles>
+                    <srcFile>${sql.dir}/create_database.sql</srcFile>
+                  </srcFiles>
+                  <skip>${build.database.skip}</skip>
+                </configuration>
+              </execution>
+              
+              <execution>
+                <id>create-procedures</id>
+                <phase>process-classes</phase>
+                <goals>
+                  <goal>execute</goal>
+                </goals>
+                <configuration>
+                  <url>${db.url}</url>
+                  <delimiter>//</delimiter>
+                  <autocommit>true</autocommit>
+                  <srcFiles>
+                    <srcFile>${sql.dir}/create_procedures_mysql.sql</srcFile>
+                  </srcFiles>
+                  <skip>${build.database.skip}</skip>
+                </configuration>
+              </execution>
+              
+              <execution>
+                <id>add-preset-data</id>
+                <phase>process-classes</phase>
+                <goals>
+                  <goal>execute</goal>
+                </goals>
+                <configuration>
+                  <url>${db.url}</url>
+                  <autocommit>true</autocommit>
+                  <srcFiles>
+                    <srcFile>${sql.dir}/create_preset_database.sql</srcFile>
+                  </srcFiles>
+                  <skip>${build.preset.skip}</skip>
+                </configuration>
+              </execution>            
+              
+            </executions>
+            
+          </plugin>
+        </plugins>
+      </build>      
+      
+    </profile>
+  
+  </profiles>
 </project>
