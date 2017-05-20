@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://jboss.org/schema/arquillian"
+    xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+
+  <extension qualifier="graphene">
+    <property name="url">http://localhost:8080/SocialNet</property>
+  </extension>
+    
+	<extension qualifier="webdriver">
+		<property name="browser">chrome</property>
+        <property name="chromeDriverBinary">/home/shadow1207/tmp/wildfly-8.2.0.Final/chromedriver</property>		
+	</extension>
+    
+</arquillian>
