@@ -2,7 +2,7 @@
 <dataset>
 	<users user_id="1" username="username1" email="some@email" password="Bar" profilePic="350x350News.png" enabled="1"/>
 	<users user_id="2" username="username2" email="some@email1" password="" profilePic="News.png"  enabled="1"/>
-	<users username="username3" email="some@email2" password="Bar" profilePic="News.png"  enabled="1"/>
+	<users user_id="3" username="username3" email="some@email2" password="Bar" profilePic="News.png"  enabled="1"/>
 	<users user_id="4" username="username4" email="some@email3" password="" profilePic="News.png"  enabled="1"/>
 	<users user_id="5" username="username5" email="some@email4" profilePic="350x350News.png"   password="" enabled="1"/>
 	<users user_id="6" username="username6" email="some@email5" profilePic="News.png"  password="" enabled="1"/>	
@@ -51,5 +51,15 @@
 	
     <tasks task_id="1" assigner="username2" name="testTask1" description="test description" assignee="username1"/>
     <tasks assigner="username2" name="testTask2" description="test description" assignee="username3"/>
+	<authorities username="username1" authority="ROLE_USER"/>
 	<authorities username="username2" authority="ROLE_USER"/>
+	<authorities username="username3" authority="ROLE_USER"/>
+	<authorities username="username4" authority="ROLE_USER"/>
+	<authorities username="username5" authority="ROLE_USER"/>
+	<authorities username="username6" authority="ROLE_USER"/>
+	<authorities username="username7" authority="ROLE_USER"/>
+	<authorities username="username8" authority="ROLE_USER"/>
+	<authorities username="username9" authority="ROLE_USER"/>
+	<authorities username="username10" authority="ROLE_USER"/>
+	<authorities username="username11" authority="ROLE_USER"/>
 </dataset>
