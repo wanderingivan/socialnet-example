@@ -12,7 +12,11 @@ public class ConstraintExceptionConverter {
 	
 	public static RuntimeException convertException(ConstraintViolationException ce){
 		
-		String message = ce.getCause().getMessage();
+		String message = ce.getCause()
+		                   .getMessage()
+		                   .split(";")[0]
+		                   .toLowerCase();
+		              
 		if(message.contains("email")){
 			return new DuplicateEmailException(ce);
 		}else if(message.contains("username")){
