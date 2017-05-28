@@ -1,5 +1,6 @@
 package com.socialnet.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -38,8 +39,9 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 
 	@Override
 	public long createUser(User user) {
-
-		logger.debug(String.format("Saving user %s",user.getUsername()));
+	    if(logger.isDebugEnabled()){
+	        logger.debug(String.format("Saving user %s",user.getUsername()));
+	    }
 		Session session = getSession();
 		long savedID = 0;
 		try{
@@ -56,15 +58,21 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 	
 	@Override
 	public User retrieveUserByUsername(String username) {
-		logger.debug(String.format("retrieving user with username %s",username));
 
+	    if(logger.isDebugEnabled()){
+	        logger.debug(String.format("Retrieving user with username %s",username));
+	    }
 		return getWithCriteria(new String[]{"username",username});
 	}
 
 	@Override
 	public void update(User user) {
 		try{
-			logger.debug(String.format("Updating user %s",user.getUsername()));
+		    
+		    if(logger.isDebugEnabled()){
+		        logger.debug(String.format("Updating user %s",user.getUsername()));
+		    }
+
 		    Query q = createQuery("Update users SET username=:username,email=:email WHERE id=:id")
 		                          .setString("username",user.getUsername())
 		                          .setString("email",user.getEmail())
@@ -86,7 +94,10 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 	private long remove(User user){
 		try{
 			Session session = getSession();
-			logger.debug(String.format("Deleting user %s with id %d",user.getUsername(),user.getId()));
+			
+			if(logger.isDebugEnabled()){
+			    logger.debug(String.format("Deleting user %s with id %d",user.getUsername(),user.getId()));
+			}
 			session.delete(user);
 			return user.getId();
 		}catch(HibernateException e){
@@ -152,7 +163,9 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 	
 	@Override
 	public void addDetails(Details details,long userId){
-		logger.debug(String.format("Adding details %s for user with id %d",details,userId));
+	    if(logger.isDebugEnabled()){
+	        logger.debug(String.format("Adding details %s for user with id %d",details,userId));
+	    }
 		Session	session = getSession();
 		User u = (User) session.load(User.class, userId);
 		u.setDetails(details);
@@ -165,6 +178,7 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 		Session session = getSession();
 		User u = retrieveUserByUsername(username);
 		image.setOwner(u);
+		image.setUploaded(new Date());
 		u.addImage(image);
 		session.persist(image);
 		session.saveOrUpdate(u);//Update cache
@@ -172,7 +186,7 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 
 	@Override
 	public void changeCoverImage(String username, long imageId) {
-		createQuery("UPDATE users SET coverImage =(SELECT i.imagePath FROM images i  WHERE i.id=:id) WHERE username=:username")
+		createQuery("UPDATE users SET coverImage =(SELECT i.imagePath FROM images i WHERE i.id=:id) WHERE username=:username")
 		          .setLong("id", imageId)
 		          .setString("username",username)
 		          .executeUpdate();
@@ -180,7 +194,7 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 
 	@Override
 	public void changeProfilePic(String username, long imageId) {
-		createQuery("UPDATE users SET profilePic =(SELECT i.imagePath FROM images i  WHERE i.id=:id) WHERE username=:username")
+		createQuery("UPDATE users SET profilePic =(SELECT i.imagePath FROM images i WHERE i.id=:id) WHERE username=:username")
 		          .setLong("id", imageId)
 		          .setString("username",username)
 		          .executeUpdate();
@@ -195,7 +209,9 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 
 	@Override
 	public String removeImage(long imageId) {
-		logger.debug("Removing image with id " + imageId );
+	    if(logger.isDebugEnabled()){
+	        logger.debug("Removing image with id " + imageId );
+	    }
 		Session session = getSession();
 		Image image =  (Image) session.load(Image.class, imageId); 
 		String path = image.getImagePath();
@@ -248,7 +264,10 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 
 	@Override
 	public void changeAuthority(String username, String authority) {
-	    logger.info(String.format("Changing role to %s for username %s",authority,username));			
+
+	    if(logger.isInfoEnabled()){
+	        logger.info(String.format("Changing role to %s for username %s",authority,username));			
+	    }
 		getSession().createSQLQuery("UPDATE authorities SET authority=:group where username=:username")
 		            .setString("group", resolveRole(authority))
 			        .setString("username",username)
@@ -275,7 +294,9 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 
 	@Override
 	public void changePassword(String principal, String password) {
-		logger.info("Changing password for user " + principal);
+	    if(logger.isInfoEnabled()){
+	        logger.info("Changing password for user " + principal);
+	    }
 		createQuery("UPDATE users SET password=:password WHERE username=:username")
 		           .setString("password", password)
 		           .setString("username", principal)
@@ -288,7 +309,9 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 	 * @param enabled whether to lock or unlock user 
 	 */
 	private void changeUserLock(String username,boolean enabled){
-		logger.info(String.format("Setting enabled to %s for username %s",enabled,username));			
+	    if(logger.isInfoEnabled()){
+	        logger.info(String.format("Setting enabled to %s for username %s",enabled,username));
+	    }
 		createQuery("UPDATE users SET enabled=:enabled where username=:username")
 		            .setBoolean("enabled", enabled)
 			        .setString("username",username)
