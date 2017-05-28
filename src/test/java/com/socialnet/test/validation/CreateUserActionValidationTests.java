@@ -7,7 +7,7 @@ import com.socialnet.action.user.CreateUpdateAction;
 import com.opensymphony.xwork2.ActionProxy;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class UserActionValidationTests extends AbstractActionValidationTestCase{
+public class CreateUserActionValidationTests extends AbstractActionValidationTestCase{
 
 	
 	protected void setUpRequestTestParams(String [] param){
@@ -19,7 +19,7 @@ public class UserActionValidationTests extends AbstractActionValidationTestCase{
 	
 	@Test
 	public void testValidationWithNoErros() throws Exception{
-		ActionProxy actionProxy = getProxy("/user/edit", new String []{"username","email@email.com","password"});
+		ActionProxy actionProxy = getProxy("/user/create", new String []{"username","email@email.com","password"});
 		CreateUpdateAction action =  (CreateUpdateAction) actionProxy.getAction();	
 		assertEquals("The validation didn't pass when it should have",
 								ActionSupport.SUCCESS,actionProxy.execute());
@@ -29,18 +29,18 @@ public class UserActionValidationTests extends AbstractActionValidationTestCase{
 	
 	
 	@Test
-	public void testValidationWithThreeErrors() throws Exception{ // Empty field errors
+	public void testValidationWithTWoErrors() throws Exception{ // Empty field errors
 
 		
-		ActionProxy actionProxy = getProxy("/user/edit", new String [] {"","",""});
+		ActionProxy actionProxy = getProxy("/user/create", new String [] {"","",""});
 		CreateUpdateAction action =  (CreateUpdateAction) actionProxy.getAction();	
 		
 		assertEquals("The validation passed when it shouldn't have",
 								ActionSupport.INPUT,actionProxy.execute());
 		assertTrue(String.format("There were less  than expected "
 				+ "errors in the validation when passing incorrect parameters"
-				+ "expected 3 but were [%d]",action.getFieldErrors().size()),
-								action.getFieldErrors().size() >= 3);
+				+ "expected 2 but were [%d]",action.getFieldErrors().size()),
+								action.getFieldErrors().size() >= 2);
 		
 	}
 	
@@ -48,7 +48,7 @@ public class UserActionValidationTests extends AbstractActionValidationTestCase{
 	public void testValidationWithStringLengthErrors() throws Exception{
 
 		
-		ActionProxy actionProxy = getProxy("/user/edit",new String [] {"someone","email@email.com","pas"});
+		ActionProxy actionProxy = getProxy("/user/create",new String [] {"someone","email@email.com","pas"});
 		CreateUpdateAction action =  (CreateUpdateAction) actionProxy.getAction();	
 		
 		
@@ -60,6 +60,21 @@ public class UserActionValidationTests extends AbstractActionValidationTestCase{
 								action.getFieldErrors().size() >= 1);	
 
 	}
+	
+    @Test
+    public void testValidationWithEmptyPassword() throws Exception{
+
+        
+        ActionProxy actionProxy = getProxy("/user/create",new String [] {"someone","email@email.com",""});
+        CreateUpdateAction action =  (CreateUpdateAction) actionProxy.getAction();  
+        
+        assertEquals("The validation passed when it shouldn't have",
+                                ActionSupport.INPUT,actionProxy.execute());
+        assertTrue("There were less  than expected "
+                + "errors in the validation when passing incorrect parameters",
+                                action.getFieldErrors().size() >= 1);   
+
+    }	
 	
 
 }
