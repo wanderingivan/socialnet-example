@@ -191,6 +191,6 @@ CREATE TABLE `acl_entry` (
 CREATE TABLE `authorities` (
   `username` varchar(50) NOT NULL,
   `authority` varchar(50) NOT NULL,
-  CONSTRAINT `username_fk_auth` FOREIGN KEY(`username`) REFERENCES `users`(`username`) ON DELETE CASCADE,
+  CONSTRAINT `username_fk_auth` FOREIGN KEY(`username`) REFERENCES `users`(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
   PRIMARY KEY(`username`,`authority`)
 );
