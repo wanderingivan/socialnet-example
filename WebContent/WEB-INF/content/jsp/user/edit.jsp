@@ -24,18 +24,18 @@
 	           <s:hidden name="%{#attr._csrf.parameterName}" value="%{#attr._csrf.token}"/>
                <div class="form-group">
                   
-                   <s:fielderror fieldName="user.username" cssClass="alert alert-danger"/>
+                   <s:fielderror id="usernameError" fieldName="user.username" cssClass="alert alert-danger"/>
                    <s:label for="user.username" key="global.username"/>
-	               <s:textfield name="user.username" value="%{user.username}" minLength="5" maxLength="25" required="true"/>
+	               <s:textfield id="username" name="user.username" value="%{user.username}"/>
 	           </div>
 	           <div class="form-group">
-                  <s:fielderror fieldName="user.email" cssClass="alert alert-danger"/>
+                  <s:fielderror id="emailError" fieldName="user.email" cssClass="alert alert-danger"/>
                    <s:label for="user.email" key="global.email"/>
- 	               <s:textfield name="user.email" value="%{user.email}" key="global.email" type="email" required="true"/>
+ 	               <s:textfield id="email" name="user.email" value="%{user.email}"/>
  	           </div>
 
 	           <div class="form-group">
-	              <button class="btn btn-primary" type="submit"><s:property value="getText('global.edit')"/></button>
+	              <button class="btn btn-primary" id="editSubmit" type="submit"><s:property value="getText('global.edit')"/></button>
 	           </div>
              </s:form>
              <s:a class="btn btn-primary" action="changePassword" namespace="/user"><s:text name="global.change_password"/></s:a>

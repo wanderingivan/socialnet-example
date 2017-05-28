@@ -14,7 +14,7 @@
                 <div class="panel-heading title">
                   <h4><s:property value="getText('global.wall')"/></h4>
                 </div>
-                <s:form action="create" namespace="/message" enctype="multipart/form-data" theme="simple" class="form">
+                <s:form action="create" namespace="/message" enctype="multipart/form-data" theme="simple" class="form" method="POST">
 	         	  <s:hidden name="%{#attr._csrf.parameterName}" value="%{#attr._csrf.token}"/>
                   <s:hidden name="owner" value="%{user.username}"/>
                   <s:textarea rows="5" class="form-controll" placeholder="%{getText('global.post_message')}" cols="38" name="message" required="true" maxLength="350"></s:textarea>

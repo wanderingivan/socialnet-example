@@ -47,10 +47,14 @@
 	
     <definition name="userEditLayout" extends="flatLayout">
 	  <put-attribute name="wall" value="/WEB-INF/content/jsp/user/edit.jsp"/>
-	</definition>	
+	</definition>
 	
-	<definition name="changePasswordLayout" extends="flatLayout">
-		<put-attribute name="wall" value="/WEB-INF/content/jsp/user/changePassword.jsp"/>
+    <definition name="userEditInputLayout" extends="listLayout">
+	  <put-attribute name="list" value="/WEB-INF/content/jsp/user/edit.jsp"/>
+	</definition>			
+	
+	<definition name="changePasswordLayout" extends="listLayout">
+		<put-attribute name="list" value="/WEB-INF/content/jsp/user/changePassword.jsp"/>
 	</definition>
 	
     <definition name="userGalleryLayout" extends="userHomeLayout">
@@ -67,8 +71,8 @@
 	  <put-attribute name="wall" value="/WEB-INF/content/jsp/user/details.jsp"/>
 	</definition>	
 	
-	<definition name="userCreateLayout" extends="baseLayout">
-	  <put-attribute name="wall" value="/WEB-INF/content/jsp/user/create.jsp"/>
+	<definition name="userCreateLayout" extends="listLayout">
+	  <put-attribute name="list" value="/WEB-INF/content/jsp/user/create.jsp"/>
 	</definition>
 	
 	<definition name="userListLayout" extends="listLayout">

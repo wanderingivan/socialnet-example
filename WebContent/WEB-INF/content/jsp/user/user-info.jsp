@@ -18,7 +18,7 @@
 
   <div class="row">
     <div class="col-md-12 col-sm-12 hidden-xs" style="top:-215px;">
-      <h2 class="profile-username">${user.username}</h2>
+      <h2 id="userTitle" class="profile-username">${user.username}</h2>
     </div>
   </div> 
   <div class="row"> 

@@ -20,7 +20,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <s:a cssClass="navbar-brand" action="/index" >Social Net</s:a>
+                <s:a cssClass="navbar-brand" action="index" namespace="/" >Social Net</s:a>
             </div>
             <div id="mainNav" class="collapse navbar-collapse" aria-expanded="false" class="btn btn-search">
               <ul class="nav navbar-nav navbar-left">
@@ -98,7 +98,7 @@
                 <sec:authorize access="isAuthenticated()">
 			      <li>
 		            <form action="/SocialNet/logout" method="POST">
-  				      <input class="btn btn-nav-alt" type="submit" value="Logout"/>
+  				      <input id="logoutSubmit" class="btn btn-nav-alt" type="submit" value="Logout"/>
     			      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			        </form>
 			      </li>

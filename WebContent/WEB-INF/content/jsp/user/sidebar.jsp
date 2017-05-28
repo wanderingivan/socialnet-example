@@ -85,7 +85,7 @@
         </s:url>
         <s:a href="%{details}"><h3><s:text name="global.details"/> <span></span></h3></s:a>
         <ul class="list-unstyled">
-        <li><h6><span style="color:#337ab7;"><s:text name="global.description"/></span><br/><s:property value="user.details.description"/></h6></li>
+        <li><h6 id="description"><span style="color:#337ab7;"><s:text name="global.description"/></span><br/><s:property value="user.details.description"/></h6></li>
         <li><h6><span style="color:#337ab7;"><s:text name="global.occupation"/>:</span><br/><s:property value="user.details.occupation"/></h6></li>
         </ul>
       </div>

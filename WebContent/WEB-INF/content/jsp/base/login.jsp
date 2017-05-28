@@ -27,18 +27,18 @@
 
 			        <div class="errorMessage">
         			  <s:if test="%{#session.SPRING_SECURITY_LAST_EXCEPTION}">
-          			    <div class="alert alert-warning"><s:text name="global.login_error"/></div>
+          			    <div id="login_error" class="alert alert-warning"><s:text name="global.login_error"/></div>
         			  </s:if>
       				</div>
     	            <div class="form-group">
-    			  	  <div class="icon"><i class="fa fa-user"></i></div><s:textfield name="username" class="form-control" value="" placeholder="%{getText('global.username')}" minLength="5" maxLength="25" required="true"/>
+    			  	  <div class="icon"><i class="fa fa-user"></i></div><s:textfield id="username" name="username" class="form-control" value="" placeholder="%{getText('global.username')}" minLength="5" maxLength="25" required="true"/>
    			        </div>
    				    <div class="form-group">
-    				  <div class="icon"><i class="fa fa-key"></i></div><s:password name="password" class="form-control" placeholder="%{getText('global.password')}" minLength="5" maxLength="25" required="true"/>
+    				  <div class="icon"><i class="fa fa-key"></i></div><s:password id="password" name="password" class="form-control" placeholder="%{getText('global.password')}" minLength="5" maxLength="25" required="true"/>
    				    </div>
                     <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                     <div class="form-group">
-	                  <button class="btn btn-primary" type="submit"><s:property value="getText('global.log_in')"/></button>
+	                  <button id="loginSubmit" class="btn btn-primary" type="submit"><s:property value="getText('global.log_in')"/></button>
     	            </div>
     	          </form>
 	      		  <div class="alert alert-info">
