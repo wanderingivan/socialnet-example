@@ -22,6 +22,9 @@
 		<action name="photoCredits">
 			<result name="success" type="tiles">creditLayout</result>
 		</action>
+		<action name="login">
+		    <result name="success" type="tiles">loginLayout</result>
+		</action>
 	</package>
 	<package name="user" namespace="/user" extends="tiles-default,json-default">
 		<interceptors>
@@ -36,7 +39,7 @@
 		</global-results>
 
 		<action name="createPage">
-		  <result name="success">/WEB-INF/content/jsp/user/create.jsp</result>
+		  <result name="success" type="tiles">userCreateLayout</result>
 		</action>
 		<action name="editPage">
 			<result name="success" type="tiles">/WEB-INF/content/jsp/user/edit.jsp</result>
