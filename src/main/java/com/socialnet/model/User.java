@@ -135,9 +135,6 @@ public class User {
 		this.email = email;
 	}
 	
-	@RequiredStringValidator(message="Password is required",fieldName="password")
-	@StringLengthFieldValidator(minLength="5",maxLength="50",
-								message="Password length must be between ${minLength} and ${maxLength} characters",fieldName="password")
 	public String getPassword() {
 		return password;
 	}
