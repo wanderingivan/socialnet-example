@@ -1,5 +1,6 @@
 package com.socialnet.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -52,6 +53,7 @@ public class UserServiceImpl implements UserService {
 		user.setProfilePic(defaultProfileImagePath);
 		user.setCoverImage(defaultCoverImagePath);
 		user.setEnabled(true);
+		user.setCreatedOn(new Date());
 		user.setPassword(encoder.encode(user.getPassword()));
 		long id = dao.createUser(user);
 		createAcl(new PrincipalSid(user.getUsername()),id);
@@ -215,6 +217,5 @@ public class UserServiceImpl implements UserService {
 	private void deleteAcl(long id){
 		aclService.deleteAcl(new ObjectIdentityImpl(User.class,Long.valueOf(id)), true);
 	}
-
 
 }
