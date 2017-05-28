@@ -8,3 +8,5 @@ target/
 /build/
 /target/
 .tern-project
+/target/
+phantomjsdriver.log
