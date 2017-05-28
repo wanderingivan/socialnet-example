@@ -8,8 +8,8 @@
   </extension>
     
 	<extension qualifier="webdriver">
-		<property name="browser">chrome</property>
-        <property name="chromeDriverBinary">/home/shadow1207/tmp/wildfly-8.2.0.Final/chromedriver</property>		
+		<property name="browser">${browser}</property>
+        <property name="${driverBinary}">${driver.binary.loc}/${driverName}</property>		
 	</extension>
     
 </arquillian>
