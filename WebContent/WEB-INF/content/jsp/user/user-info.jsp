@@ -35,7 +35,8 @@
                  <s:url action="removeFriend" namespace="/user" var="removeFriend">
                    <s:param name="receiver" value="user.username"/>
                  </s:url>
-                 <sj:a  targets="t"
+                 <sj:a  id="removeFriendshipButton"
+                        targets="t"
                  		href="%{removeFriend}" 
                  		cssClass="btn btn-nav" 
                 		onSuccessTopics="relationSuccess"

@@ -37,13 +37,14 @@ public class RelationAction extends AbstractUserAction implements AuthenticatedU
 		return ERROR;
 	}
 	
-	@Action(value="removeFriend",results={@Result(name="success", type="redirectAction", params={"actionName","show","username","${receiver}"})})
+	@Action(value="removeFriend",results={@Result(name="success", type="json")})
 	public String removeFriendShip(){
 		try{
             if(logger.isInfoEnabled()){
                 logger.info("Removing friendship for " + receiver + " " + authenticatedUser);
             }
 			service.removeFriendship(receiver,authenticatedUser);
+			message = getText("global.removed_friendship");
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Exception caught while removing friendship between " + receiver + " " + authenticatedUser + "\n" + e);

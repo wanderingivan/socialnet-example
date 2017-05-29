@@ -53,6 +53,7 @@ $.subscribe("relationSuccess",
 				$(".modal-title").html(jd.message);
 				$("#relationModal").modal();
 				$("#friendRequestButton").remove();
+				$("#removeFriendshipButton").remove();
 			}
 );
 $(document).ready(function(){
