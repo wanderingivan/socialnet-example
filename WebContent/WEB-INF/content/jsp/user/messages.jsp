@@ -41,7 +41,14 @@
                          </sj:a>
                        </div>
                        <div class="media-body">
-                         <p><s:property value="messages[0].message"/></p>
+                         <p>
+                           <s:if test="messages[0].message.length() > 50">
+                             <s:property value="messages[0].message.substring(0,50)"/>
+                           </s:if>
+                           <s:else>
+                             <s:property value="messages[0].message"/>
+                           </s:else>
+                         </p>
                          <span class="text-muted"><s:date name="lastUpdate" nice="true"/></span>
                        </div>
                      </div>           
