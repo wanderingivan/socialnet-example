@@ -62,7 +62,6 @@ public class CreateUpdateAction extends ActionSupport implements ModelDriven<Use
 			
 		}catch(Exception e){
 			logger.error("Exception caught creating user " + user.getUsername() + "\n" + e );
-			e.printStackTrace();
 		}
 		return ERROR;
 	}
