@@ -4,7 +4,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
     <div class="container">
-      <div class="row" style="min-height:872px;">
+      <div class="row" style="min-height:901px;">
     	<div class="col-md-6 col-sm-3 hidden-xs"></div>
     	<div class="col-md-5 col-sm-8 col-xs-12">
     	  <div id="card" class="">
