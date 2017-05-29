@@ -49,7 +49,7 @@
     	      </div>
     	     </div> 
     	    </div>
-    	    <div class="back">
+    	    <div id="createback" class="back" style="visibility:hidden">
     	     <div class="panel panel-default">
     	      <div class="panel-heading title">
     	        <div class="row">
