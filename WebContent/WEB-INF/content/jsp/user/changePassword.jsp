@@ -10,7 +10,7 @@
        <div class="panel-heading title">
     	 <div class="row">
     	   <div class="col-md-5 col-sm-6 col-xs-8">
-    	     <h4><i class="fa fa-user"></i>&nbsp;<s:text name="global.edit"/></h4>
+    	     <h4><i class="fa fa-user"></i>&nbsp;<s:text name="global.change_password"/></h4>
     	   </div>
     	   <div class="col-md-offset-5 col-md-2 col-sm-offset-4 col-sm-2 col-xs-offset-1 col-xs-3">
     	   </div>
