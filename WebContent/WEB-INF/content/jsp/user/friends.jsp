@@ -19,7 +19,7 @@
                     <s:url action="loadImage" namespace="/util" var="loadImage">
                       <s:param name="path" value="profilePic"/>
                     </s:url>
-                    <s:url action="loadUser" namespace="/user" var="showUser">
+                    <s:url action="show" namespace="/user" var="showUser">
                       <s:param name="username" value="username"/>
                     </s:url>
                     <s:a href="%{showUser}" tooltip="Visit Profile">
